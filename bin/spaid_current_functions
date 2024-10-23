@@ -1,0 +1,19 @@
+#!/bin/sh
+# Find all currently made Python functions.
+# 
+# - First argument is the path to the functions you want to get
+#   (e.g. `seedcase_sprout/core/`).
+#
+# Example:
+# 
+#   cd path/to/seedcase-sprout
+#   spaid_current_functions seedcase_sprout/core
+
+find $1 -name '*.py' -print |
+    # Regular expression to find all text that starts with `def`,
+    # excluding methods.
+    xargs grep -P -h "^def .*\(.*" |
+    # Keep only the function name and the brackets.
+    sed -e 's/def //' -e 's/(.*//' -e 's/$/()/' |
+    # Sort and keep only unique functions.
+    sort -u
