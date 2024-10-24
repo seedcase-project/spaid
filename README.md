@@ -33,4 +33,4 @@ export PATH=$HOME/.local/bin:$PATH
 
 Close your terminal and re-run `echo $PATH` to check that it worked.
 
-You now have installed the spaid helper functions!
+If it worked and you now see the folder, you have installed the spaid helper functions!
