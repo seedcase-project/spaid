@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+if [[ "$1" == "-h" ]] ; then
+    echo "Usage: `basename $0` [-h]"
+    echo 
+    echo "Run this command on a development Git branch to check if commit"
+    echo "messages follow the Conventional Commit standard. This will only"
+    echo "work if:"
+    echo 
+    echo "- you are in a local Git repository"
+    echo "- the repository is a Python project managed by Poetry"
+    echo "- the Poetry project has commitizen installed"
+    echo "- you are on a branch that isn't main"
+    echo 
+    echo "Otherwise, you'll get an error or nothing will happen."
+    exit 0
+fi
+
+if [[ $(git rev-parse --abbrev-ref HEAD) != "main" ]]
+then
+    poetry run cz check --rev-range main..HEAD
+fi
