@@ -46,3 +46,7 @@ helper functions!
 ```{bash}
 spaid_lint_commits_on_branch -h
 ```
+
+```{bash}
+spaid_setup_dev_workspace -h
+```

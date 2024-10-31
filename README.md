@@ -56,3 +56,23 @@ follow the Conventional Commit standard. This will only work if:
 - you are on a branch that isn’t main
 
 Otherwise, you’ll get an error or nothing will happen.
+
+``` bash
+spaid_setup_dev_workspace -h
+```
+
+Usage: spaid_setup_dev_workspace \[-h\]
+
+Run this command to either setup up or update your development workspace
+to have any helper packages or tools installed and configured. These are
+the actions it does currently:
+
+- Installs Python package dependencies
+- Installs pre-commit hooks
+- Runs pre-commit hooks on all the files
+
+This command only works if:
+
+- you are in a local Git repository
+- the repository is a Python project managed by Poetry
+- the repository has a file called ‘.pre-commit-config.yaml’
