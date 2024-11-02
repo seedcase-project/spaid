@@ -13,18 +13,16 @@ the newly created folder and run:
 just install
 ```
 
-mkdir -p ~/.local/bin ln -sf \$(pwd)/bin/\* ~/.local/bin
-
 After that is finished, check to make sure that the `~/.local/bin`
 folder is on your execution path (so your Terminal can find the
 installed commands) by running the below code, which should give the
 output below:
 
 ``` bash
-echo $PATH | grep -o "\.local/bin"
+echo $PATH | grep -o "\.local/bin" | uniq
 ```
 
-.local/bin .local/bin .local/bin
+    .local/bin
 
 Then you don’t need to do anything else. If you don’t see that folder,
 find your `~/.zshrc`, open it in a text editor, and add this line to
@@ -75,3 +73,27 @@ This command only works if:
 
 - you are in a local Git repository
 - the repository has a file called ‘.pre-commit-config.yaml’
+
+``` bash
+spaid_create_function_file -h
+```
+
+Usage: spaid_create_function_file \[-h\]
+
+Run this script to create a new function file with the corresponding
+test file.
+
+Example:
+
+    $ spaid_create_function_file seedcase_sprout core properties
+    Created:
+    ./seedcase_sprout/core/properties.py
+    ./tests/core/test_properties.py
+
+Positional arguments:
+
+- module: The folder of the module you want to create the new function
+  in.
+- submodule: The folder of the submodule or part, e.g. core vs cli, that
+  you want to create the new function in.
+- name: The name of the function you want to create.

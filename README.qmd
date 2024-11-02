@@ -1,8 +1,6 @@
 ---
 format: gfm
 engine: knitr
-execute:
-    output: asis
 ---
 
 <!-- Don't edit README.md directly, edit README.qmd and render to Markdown -->
@@ -15,6 +13,7 @@ Clone this repo to somewhere on your computer. Then open a terminal in
 the newly created folder and run:
 
 ```{bash}
+#| output: false
 just install
 ```
 
@@ -24,8 +23,7 @@ installed commands) by running the below code, which should give the
 output below:
 
 ```{bash}
-#| output: true
-echo $PATH | grep -o "\.local/bin"
+echo $PATH | grep -o "\.local/bin" | uniq
 ```
 
 Then you don't need to do anything else. If you don't see that folder,
@@ -44,9 +42,16 @@ helper functions!
 ## Commands
 
 ```{bash}
+#| output: asis
 spaid_lint_commits_on_branch -h
 ```
 
 ```{bash}
+#| output: asis
 spaid_setup_dev_workspace -h
+```
+
+```{bash}
+#| output: asis
+spaid_create_function_file -h
 ```
