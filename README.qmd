@@ -53,5 +53,5 @@ spaid_setup_dev_workspace -h
 
 ```{bash}
 #| output: asis
-spaid_create_function_file -h
+spaid_create_python_files -h
 ```
