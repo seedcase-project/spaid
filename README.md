@@ -1,6 +1,6 @@
 
 
-<!-- Don't edit README.md directly, edit README.qmd and render to Markdown -->
+<!-- Don't edit README.md directly, edit README.qmd and render to Markdown via `just build-readme` -->
 
 # spaid: Seedcase Project aid — a toolkit for developing Seedcase
 
@@ -34,7 +34,8 @@ that file:
 export PATH=$HOME/.local/bin:$PATH
 ```
 
-Close your terminal and re-run the code to check that it worked.
+Close your terminal and re-run the `echo` code above to check that it
+worked.
 
 If it worked and you now see the folder, you have installed the spaid
 helper functions!

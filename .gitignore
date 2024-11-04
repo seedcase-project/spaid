@@ -1,0 +1,14 @@
+# Development files and folders
+_ignore
+
+# Temporary files
+*.tmp
+
+# Python specific content
+venv
+__pycache__/
+*.py[cod]
+
+# MacOS
+.DS_Store
+
