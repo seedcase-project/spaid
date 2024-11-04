@@ -8,7 +8,7 @@ if [[ "$1" == "-h" ]] ; then
     echo 
     echo "Example:"
     echo 
-    echo "    $ spaid_create_function_file seedcase_sprout core properties"
+    echo "    $ spaid_create_python_files seedcase_sprout core properties"
     echo "    Created:"
     echo "    ./seedcase_sprout/core/properties.py"
     echo "    ./tests/core/test_properties.py"
@@ -30,10 +30,16 @@ then
     exit 1
 fi
 
-py_file=./$1/$2/$3.py
-test_file=./tests/$2/test_$3.py
+py_file=$(pwd)/$1/$2/$3.py
+test_file=$(pwd)/tests/$2/test_$3.py
 touch $py_file $test_file
 
-echo "Created:"
-echo $py_file
-echo $test_file
+if [[ -f "$py_file" & -f "$test_file" ]]
+then
+    echo "Created:"
+    echo $py_file
+    echo $test_file
+else
+    echo "The files weren't created, was there a problem with the arguments you gave?"
+    exit 1
+fi
