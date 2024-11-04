@@ -27,7 +27,7 @@ then
     exit 1
 fi
 
-if [[ -f "pyproject.toml" ]]
+if [[ -f "$pyproject_file" ]]
 then
     # Install dependencies just in case.
     poetry install
