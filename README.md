@@ -76,17 +76,17 @@ This command only works if:
 - the repository has a file called ‘.pre-commit-config.yaml’
 
 ``` bash
-spaid_create_function_file -h
+spaid_create_python_files -h
 ```
 
-Usage: spaid_create_function_file \[-h\]
+Usage: spaid_create_python_files \[-h\]
 
 Run this script to create a new function file with the corresponding
 test file.
 
 Example:
 
-    $ spaid_create_function_file seedcase_sprout core properties
+    $ spaid_create_python_files seedcase_sprout core properties
     Created:
     ./seedcase_sprout/core/properties.py
     ./tests/core/test_properties.py
