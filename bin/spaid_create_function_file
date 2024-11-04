@@ -32,7 +32,7 @@ fi
 
 py_file=./$1/$2/$3.py
 test_file=./tests/$2/test_$3.py
-touch py_file test_file
+touch $py_file $test_file
 
 echo "Created:"
 echo $py_file
