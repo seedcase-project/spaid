@@ -2,19 +2,19 @@
 
 if [[ "$1" == "-h" ]] ; then
     echo "Usage: `basename $0` [-h]"
-    echo 
+    echo
     echo "Run this script to create a new function file with the corresponding"
     echo "test file."
-    echo 
+    echo
     echo "Example:"
-    echo 
+    echo
     echo "    $ spaid_create_python_files seedcase_sprout core properties"
     echo "    Created:"
     echo "    ./seedcase_sprout/core/properties.py"
     echo "    ./tests/core/test_properties.py"
-    echo 
+    echo
     echo "Positional arguments:"
-    echo 
+    echo
     echo "- module: The folder of the module you want to create the new function in."
     echo "- submodule: The folder of the submodule or part, e.g. core vs cli, that"
     echo "  you want to create the new function in."
@@ -34,7 +34,7 @@ py_file=$(pwd)/$1/$2/$3.py
 test_file=$(pwd)/tests/$2/test_$3.py
 touch $py_file $test_file
 
-if [[ -f "$py_file" & -f "$test_file" ]]
+if [[ -f "$py_file" && -f "$test_file" ]]
 then
     echo "Created:"
     echo $py_file
