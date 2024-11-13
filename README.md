@@ -98,3 +98,24 @@ Positional arguments:
 - submodule: The folder of the submodule or part, e.g. core vs cli, that
   you want to create the new function in.
 - name: The name of the function you want to create.
+
+``` bash
+spaid_pr_list -h
+```
+
+Usage: spaid_pr_list \[-h\]
+
+Very simple wrapper around ‘gh pr list’.
+
+``` bash
+spaid_pr_merge_rebase -h
+```
+
+Usage: spaid_pr_merge_rebase \[-h\]
+
+Simple wrapper around ‘gh pr merge’. Requires admin privilege, so not
+everyone can use this command.
+
+Positional argument:
+
+- PR number: The PR number to do the merge rebase for.

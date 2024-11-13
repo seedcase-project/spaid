@@ -54,4 +54,13 @@ spaid_setup_dev_workspace -h
 ```{bash}
 #| output: asis
 spaid_create_python_files -h
+
+```{bash}
+#| output: asis
+spaid_pr_list -h
+```
+
+```{bash}
+#| output: asis
+spaid_pr_merge_rebase -h
 ```
