@@ -60,4 +60,7 @@ spaid_create_python_files -h
 spaid_pr_list -h
 ```
 
+```{bash}
+#| output: asis
+spaid_pr_merge_rebase -h
 ```

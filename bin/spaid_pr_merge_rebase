@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+if [[ "$1" == "-h" ]] ; then
+    echo "Usage: `basename $0` [-h]"
+    echo
+    echo "Simple wrapper around 'gh pr merge'. Requires admin privilege, so not"
+    echo "everyone can use this command."
+    echo
+    echo "Positional argument:"
+    echo
+    echo "- PR number: The PR number to do the merge rebase for."
+    exit 0
+fi
+
+gh pr merge --admin --rebase $1
