@@ -1,26 +1,44 @@
 #!/bin/zsh
 
+help_text="
+Usage: `basename $0` [-h]
+
+Run this script to create a new function file with the corresponding test file.
+
+Example:
+
+    $ spaid_gh_org_invite seedcase-project lwjohnst86
+
+Positional arguments:
+
+- org: The GitHub organization name.
+- username: The GitHub username of the person you want to invite.
+"
+
 if [[ "$1" == "-h" ]] ; then
-    echo "Usage: `basename $0` [-h]"
-    echo
-    echo "Run this script to create a new function file with the corresponding"
-    echo "test file."
-    echo
-    echo "Example:"
-    echo
-    echo "    $ spaid_gh_list_teams seedcase-project"
-    echo "    Created:"
-    echo "    ./seedcase_sprout/core/properties.py"
-    echo "    ./tests/core/test_properties.py"
-    echo
-    echo "Positional arguments:"
-    echo
-    echo "- org: The GitHub organization name."
-    exit 0
+  echo $help_text
+  exit 0
 fi
 
-gh api \
-  -H "Accept: application/vnd.github+json" \
-  -H "X-GitHub-Api-Version: 2022-11-28" \
-  /orgs/$1/teams \
-  -q ".[] | .name"
+org="$1"
+user="$2"
+
+function get_user_id() {
+  gh api \
+    -H "Accept: application/vnd.github+json" \
+    -H "X-GitHub-Api-Version: 2022-11-28" \
+    /users/$user \
+    -q ".id"
+}
+
+function org_invite() {
+  gh api \
+    --method POST \
+    -H "Accept: application/vnd.github+json" \
+    -H "X-GitHub-Api-Version: 2022-11-28" \
+    /orgs/$org/invitations \
+    -f "invitee_id=$user_id"
+}
+
+declare -i user_id=$(get_user_id $user)
+org_invite $org $user_id
