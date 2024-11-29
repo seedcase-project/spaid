@@ -64,3 +64,8 @@ spaid_pr_list -h
 #| output: asis
 spaid_pr_merge_rebase -h
 ```
+
+
+```{bash}
+spaid_gh_teams_list -h
+```

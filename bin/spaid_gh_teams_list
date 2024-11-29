@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+help_text="
+Usage: `basename $0` [-h]
+
+Run this script to get a list of teams within a specific organization.
+
+Example:
+
+    $ spaid_gh_list_teams seedcase-project
+    Admin
+    Developers
+
+Positional arguments:
+
+- org: The GitHub organization name.
+"
+
+if [[ "$1" == "-h" ]] ; then
+  echo $help_text
+  exit 0
+fi
+
+gh api \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  /orgs/$1/teams \
+  -q ".[] | .name"
