@@ -1,10 +1,30 @@
 #!/bin/zsh
 
+help_text="
+Usage: `basename $0` [-h]
+
+Lists all open PRs in an organization.
+
+Examples:
+    $ spaid_pr_list seedcase-project
+
+Positional argument:
+
+- org: The name of the GitHub organization.
+"
+
 if [[ "$1" == "-h" ]] ; then
-    echo "Usage: `basename $0` [-h]"
-    echo
-    echo "Very simple wrapper around 'gh pr list'."
+    echo $help_text
     exit 0
 fi
 
-gh pr list
+org="$1"
+# Needs to be converted to an array with `()`.
+repos=($(gh repo list "$org" --json name -q ".[] | .name"))
+
+# The `[@]` pulls out all items in the array.
+for repo in "${repos[@]}"; do
+    gh pr list --repo "$org/$repo" --json number,title,headRepository --template \
+        '{{range .}}{{ tablerow (.headRepository.name) (printf "#%v" .number | autocolor "cyan") .title }}{{end}}'
+done
+
