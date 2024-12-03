@@ -99,13 +99,21 @@ Positional arguments:
   you want to create the new function in.
 - name: The name of the function you want to create.
 
+### Pull requests
+
 ``` bash
 spaid_pr_list -h
 ```
 
 Usage: spaid_pr_list \[-h\]
 
-Very simple wrapper around ‘gh pr list’.
+Lists all open PRs in an organization.
+
+Examples: \$ spaid_pr_list seedcase-project
+
+Positional argument:
+
+- org: The name of the GitHub organization.
 
 ``` bash
 spaid_pr_merge_rebase -h
@@ -119,3 +127,64 @@ everyone can use this command.
 Positional argument:
 
 - PR number: The PR number to do the merge rebase for.
+
+### GitHub organization management
+
+``` bash
+spaid_gh_org_invite -h
+```
+
+
+    Usage: spaid_gh_org_invite [-h]
+
+    Run this script to create a new function file with the corresponding test file.
+
+    Example:
+
+        $ spaid_gh_org_invite seedcase-project lwjohnst86
+
+    Positional arguments:
+
+    - org: The GitHub organization name.
+    - username: The GitHub username of the person you want to invite.
+
+``` bash
+spaid_gh_teams_list -h
+```
+
+
+    Usage: spaid_gh_teams_list [-h]
+
+    Run this script to get a list of teams within a specific organization.
+
+    Example:
+
+        $ spaid_gh_list_teams seedcase-project
+        Admin
+        Developers
+
+    Positional arguments:
+
+    - org: The GitHub organization name.
+
+``` bash
+spaid_gh_teams_invite -h
+```
+
+    Usage: spaid_gh_teams_invite [-h]
+
+    Run this script to create a new function file with the corresponding
+    test file.
+
+    Example:
+
+        $ spaid_gh_org_invite seedcase-project lwjohnst86
+        Created:
+        ./seedcase_sprout/core/properties.py
+        ./tests/core/test_properties.py
+
+    Positional arguments:
+
+    - org: The GitHub organization name.
+    - username: The GitHub username of the person you want to invite.
+    - email: The GitHub username of the person you want to invite.

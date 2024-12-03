@@ -54,6 +54,9 @@ spaid_setup_dev_workspace -h
 ```{bash}
 #| output: asis
 spaid_create_python_files -h
+```
+
+### Pull requests
 
 ```{bash}
 #| output: asis
@@ -65,7 +68,16 @@ spaid_pr_list -h
 spaid_pr_merge_rebase -h
 ```
 
+### GitHub organization management
+
+```{bash}
+spaid_gh_org_invite -h
+```
 
 ```{bash}
 spaid_gh_teams_list -h
+```
+
+```{bash}
+spaid_gh_teams_invite -h
 ```
