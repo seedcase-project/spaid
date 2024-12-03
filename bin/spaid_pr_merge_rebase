@@ -1,15 +1,35 @@
 #!/bin/zsh
 
+help_text="
+Usage: `basename $0` [-h]
+
+Doa merge rebase on multiple PRs in a single repository. Requires admin
+privilege, so not everyone can use this command.
+
+Examples:
+
+    # Do merge rebase on (fake) PRs 1, 2, and 3.
+    $ spaid_pr_merge_rebase seedcase-project seedcase-theme 1 2 3
+
+Positional arguments:
+
+- org: The name of the GitHub organization.
+- repo: The name of the repository in the GitHub organization.
+- PR number(s): One or more PR numbers to do the merge rebase for.
+"
+
 if [[ "$1" == "-h" ]] ; then
-    echo "Usage: `basename $0` [-h]"
-    echo
-    echo "Simple wrapper around 'gh pr merge'. Requires admin privilege, so not"
-    echo "everyone can use this command."
-    echo
-    echo "Positional argument:"
-    echo
-    echo "- PR number: The PR number to do the merge rebase for."
+    echo $help_text
     exit 0
 fi
 
-gh pr merge --admin --rebase $1
+# Shifts are needed to get all numbers at the end.
+org="$1"; shift
+repo="$2"; shift
+# Set as an array with `()`.
+pr_numbers=("$@")
+
+# Allow for loop access to each item in array using `[@]`.
+for pr_number in "${pr_numbers[@]}"; do
+    gh pr merge --repo "$org/$repo" --admin --rebase $pr_number
+done
