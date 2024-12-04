@@ -121,12 +121,19 @@ spaid_pr_merge_rebase -h
 
 Usage: spaid_pr_merge_rebase \[-h\]
 
-Simple wrapper around ‘gh pr merge’. Requires admin privilege, so not
-everyone can use this command.
+Doa merge rebase on multiple PRs in a single repository. Requires admin
+privilege, so not everyone can use this command.
 
-Positional argument:
+Examples:
 
-- PR number: The PR number to do the merge rebase for.
+    # Do merge rebase on (fake) PRs 1, 2, and 3.
+    $ spaid_pr_merge_rebase seedcase-project seedcase-theme 1 2 3
+
+Positional arguments:
+
+- org: The name of the GitHub organization.
+- repo: The name of the repository in the GitHub organization.
+- PR number(s): One or more PR numbers to do the merge rebase for.
 
 ### GitHub organization management
 
