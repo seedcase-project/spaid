@@ -23,9 +23,10 @@ if [[ "$1" == "-h" ]] ; then
     exit 0
 fi
 
+org="$1"
+repo="$2"
 # Shifts are needed to get all numbers at the end.
-org="$1"; shift
-repo="$2"; shift
+shift 2
 # Set as an array with `()`.
 pr_numbers=("$@")
 
