@@ -3,7 +3,7 @@
 help_text="
 Usage: `basename $0` [-h]
 
-Run this script to create a new function file with the corresponding test file.
+Invite a GitHub user to a GitHub organization.
 
 Example:
 
@@ -11,8 +11,8 @@ Example:
 
 Positional arguments:
 
-- org: The GitHub organization name.
-- username: The GitHub username of the person you want to invite.
+1. organization: The GitHub organization name.
+2. username: The GitHub username of the person you want to invite.
 "
 
 if [[ "$1" == "-h" ]] ; then
