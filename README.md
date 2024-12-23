@@ -144,7 +144,7 @@ spaid_gh_org_invite -h
 
     Usage: spaid_gh_org_invite [-h]
 
-    Run this script to create a new function file with the corresponding test file.
+    Invite a GitHub user to a GitHub organization.
 
     Example:
 
@@ -152,8 +152,8 @@ spaid_gh_org_invite -h
 
     Positional arguments:
 
-    - org: The GitHub organization name.
-    - username: The GitHub username of the person you want to invite.
+    1. organization: The GitHub organization name.
+    2. username: The GitHub username of the person you want to invite.
 
 ``` bash
 spaid_gh_teams_list -h
@@ -162,36 +162,34 @@ spaid_gh_teams_list -h
 
     Usage: spaid_gh_teams_list [-h]
 
-    Run this script to get a list of teams within a specific organization.
+    Run this script to get a list of teams (their 'slug', not the human-readable
+    name) within a specific organization.
 
     Example:
 
         $ spaid_gh_list_teams seedcase-project
-        Admin
-        Developers
+        admin
+        developers
 
     Positional arguments:
 
-    - org: The GitHub organization name.
+    1. organization: The GitHub organization name.
 
 ``` bash
 spaid_gh_teams_invite -h
 ```
 
+
     Usage: spaid_gh_teams_invite [-h]
 
-    Run this script to create a new function file with the corresponding
-    test file.
+    Add a GitHub user to a team in a GitHub organization.
 
     Example:
 
-        $ spaid_gh_org_invite seedcase-project lwjohnst86
-        Created:
-        ./seedcase_sprout/core/properties.py
-        ./tests/core/test_properties.py
+        $ spaid_gh_teams_invite seedcase-project admin lwjohnst86
 
     Positional arguments:
 
-    - org: The GitHub organization name.
-    - username: The GitHub username of the person you want to invite.
-    - email: The GitHub username of the person you want to invite.
+    1. organization: The GitHub organization name.
+    2. team_slug: The GitHub organization team 'slug' name.
+    3. username: The GitHub username of the person you want to invite.
