@@ -1,10 +1,10 @@
 @_default:
     just --list --unsorted
 
-# Run all recipes
+# Run all recipes.
 run-all: reset-local-bin install build-readme
 
-# Install all scripts in `bin/` to `~/.local/bin/`
+# Install all scripts in `bin/` to `~/.local/bin/`.
 install:
     mkdir -p ~/.local/bin
     ln -sf $(pwd)/bin/* ~/.local/bin
@@ -13,5 +13,6 @@ install:
 build-readme:
     quarto render README.qmd
 
+# Clean up the 'local/bin' by removing the spaid commands.
 reset-local-bin:
   find ~/.local/bin/* -name "spaid_" -delete
