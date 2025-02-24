@@ -1,0 +1,41 @@
+#!/bin/zsh
+
+help_text="
+Usage: `basename $0` [<org>] [<repo>] [-h]
+
+Set up a repository with our Seedcase Project defaults. Settings used are:
+
+- Delete branches after they've been merged.
+- Omit the wiki.
+- Disable discussions.
+- Allow PR's to have an option to auto-merge after approval.
+- Allow PR's to have an option to easily update with the `main` branch.
+- Allow merge commits as well as rebase and squash merges.
+
+Examples:
+
+    $ spaid_gh_set_repo_settings seedcase-project team
+
+Positional arguments:
+
+- org: The name of the GitHub organization.
+- repo: The name of the repository in the GitHub organization.
+"
+
+if [[ "$1" == "-h" ]] ; then
+    echo $help_text
+    exit 0
+fi
+
+org="$1"
+repo="$2"
+
+gh repo edit $org/$repo \
+  --delete-branch-on-merge=true \
+  --enable-wiki=false \
+  --enable-discussions=false \
+  --enable-auto-merge=true \
+  --enable-merge-commit=true \
+  --enable-rebase-merge=true \
+  --enable-squash-merge=true \
+  --allow-update-branch
