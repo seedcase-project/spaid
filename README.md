@@ -226,9 +226,6 @@ spaid_gh_set_repo_settings -h
 spaid_gh_create_repo_from_local -h
 ```
 
-    /home/luke/.local/bin/spaid_gh_create_repo_from_local:3: command not found: --push
-    /home/luke/.local/bin/spaid_gh_create_repo_from_local:3: command not found: --disable-wiki
-    /home/luke/.local/bin/spaid_gh_create_repo_from_local:3: command not found: --homepage
 
     Usage: spaid_gh_create_repo_from_local [<org>] [<repo>] [<description>] [-h]
 
@@ -238,11 +235,11 @@ spaid_gh_create_repo_from_local -h
     - Sets the repo to public.
     - Uses the working directory as the root for the local Git repository.
     - Includes a description of the newly created repository.
-    - Pushes the local repo to the new repo with .
-    - Disables the wiki with .
-    - Sets the URL for the homepage with  following the pattern
-      'https://REPO.ORG.org' (assuming you use '.org' as your domain ending
-      and that you manage your website build via something like Netlify).
+    - Pushes the local repo to the new repo.
+    - Disables the wiki.
+    - Sets the URL for the homepage following the pattern 'https://REPO.ORG.org'
+      (assuming you use '.org' as your domain ending and that you manage your
+      website build via something like Netlify).
     - Runs 'spaid_gh_setup_new_repo'.
 
     Examples:
