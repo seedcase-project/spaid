@@ -121,7 +121,7 @@ spaid_pr_merge_rebase -h
 
 Usage: spaid_pr_merge_rebase \[-h\]
 
-Doa merge rebase on multiple PRs in a single repository. Requires admin
+Do a merge rebase on multiple PRs in a single repository. Requires admin
 privilege, so not everyone can use this command.
 
 Examples:
@@ -193,3 +193,66 @@ spaid_gh_teams_invite -h
     1. organization: The GitHub organization name.
     2. team_slug: The GitHub organization team 'slug' name.
     3. username: The GitHub username of the person you want to invite.
+
+### GitHub repository management
+
+``` bash
+spaid_gh_set_repo_settings -h
+```
+
+    /home/luke/.local/bin/spaid_gh_set_repo_settings:3: command not found: main
+
+    Usage: spaid_gh_set_repo_settings [<org>] [<repo>] [-h]
+
+    Set up a repository with our Seedcase Project defaults. Settings used are:
+
+    - Delete branches after they've been merged.
+    - Omit the wiki.
+    - Disable discussions.
+    - Allow PR's to have an option to auto-merge after approval.
+    - Allow PR's to have an option to easily update with the  branch.
+    - Allow merge commits as well as rebase and squash merges.
+
+    Examples:
+
+        $ spaid_gh_set_repo_settings seedcase-project team
+
+    Positional arguments:
+
+    - org: The name of the GitHub organization.
+    - repo: The name of the repository in the GitHub organization.
+
+``` bash
+spaid_gh_create_repo_from_local -h
+```
+
+    /home/luke/.local/bin/spaid_gh_create_repo_from_local:3: command not found: --push
+    /home/luke/.local/bin/spaid_gh_create_repo_from_local:3: command not found: --disable-wiki
+    /home/luke/.local/bin/spaid_gh_create_repo_from_local:3: command not found: --homepage
+
+    Usage: spaid_gh_create_repo_from_local [<org>] [<repo>] [<description>] [-h]
+
+    Create a GitHub repository from a local (working directory) Git repository.
+    This function will then
+
+    - Sets the repo to public.
+    - Uses the working directory as the root for the local Git repository.
+    - Includes a description of the newly created repository.
+    - Pushes the local repo to the new repo with .
+    - Disables the wiki with .
+    - Sets the URL for the homepage with  following the pattern
+      'https://REPO.ORG.org' (assuming you use '.org' as your domain ending
+      and that you manage your website build via something like Netlify).
+    - Runs 'spaid_gh_setup_new_repo'.
+
+    Examples:
+
+        $ spaid_gh_create_repo_from_local seedcase-project seedcase-theme 'Seedcase theme repo'
+
+    Positional arguments:
+
+    - org: The name of the GitHub organization.
+    - repo: The name of the repository you want created in the GitHub organization.
+      Should match the folder this is run in.
+    - description: The description of the contents of the repository that is display
+      in the repository's listing.
