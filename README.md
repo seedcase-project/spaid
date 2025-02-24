@@ -141,58 +141,55 @@ Positional arguments:
 spaid_gh_org_invite -h
 ```
 
+Usage: spaid_gh_org_invite \[-h\]
 
-    Usage: spaid_gh_org_invite [-h]
+Invite a GitHub user to a GitHub organization.
 
-    Invite a GitHub user to a GitHub organization.
+Example:
 
-    Example:
+    $ spaid_gh_org_invite seedcase-project lwjohnst86
 
-        $ spaid_gh_org_invite seedcase-project lwjohnst86
+Positional arguments:
 
-    Positional arguments:
-
-    1. organization: The GitHub organization name.
-    2. username: The GitHub username of the person you want to invite.
+1.  organization: The GitHub organization name.
+2.  username: The GitHub username of the person you want to invite.
 
 ``` bash
 spaid_gh_teams_list -h
 ```
 
+Usage: spaid_gh_teams_list \[-h\]
 
-    Usage: spaid_gh_teams_list [-h]
+Run this script to get a list of teams (their ‘slug’, not the
+human-readable name) within a specific organization.
 
-    Run this script to get a list of teams (their 'slug', not the human-readable
-    name) within a specific organization.
+Example:
 
-    Example:
+    $ spaid_gh_list_teams seedcase-project
+    admin
+    developers
 
-        $ spaid_gh_list_teams seedcase-project
-        admin
-        developers
+Positional arguments:
 
-    Positional arguments:
-
-    1. organization: The GitHub organization name.
+1.  organization: The GitHub organization name.
 
 ``` bash
 spaid_gh_teams_invite -h
 ```
 
+Usage: spaid_gh_teams_invite \[-h\]
 
-    Usage: spaid_gh_teams_invite [-h]
+Add a GitHub user to a team in a GitHub organization.
 
-    Add a GitHub user to a team in a GitHub organization.
+Example:
 
-    Example:
+    $ spaid_gh_teams_invite seedcase-project admin lwjohnst86
 
-        $ spaid_gh_teams_invite seedcase-project admin lwjohnst86
+Positional arguments:
 
-    Positional arguments:
-
-    1. organization: The GitHub organization name.
-    2. team_slug: The GitHub organization team 'slug' name.
-    3. username: The GitHub username of the person you want to invite.
+1.  organization: The GitHub organization name.
+2.  team_slug: The GitHub organization team ‘slug’ name.
+3.  username: The GitHub username of the person you want to invite.
 
 ### GitHub repository management
 
@@ -200,56 +197,58 @@ spaid_gh_teams_invite -h
 spaid_gh_set_repo_settings -h
 ```
 
-    /home/luke/.local/bin/spaid_gh_set_repo_settings:3: command not found: main
+/home/luke/.local/bin/spaid_gh_set_repo_settings:3: command not found:
+main
 
-    Usage: spaid_gh_set_repo_settings [<org>] [<repo>] [-h]
+Usage: spaid_gh_set_repo_settings \[<org>\] \[<repo>\] \[-h\]
 
-    Set up a repository with our Seedcase Project defaults. Settings used are:
+Set up a repository with our Seedcase Project defaults. Settings used
+are:
 
-    - Delete branches after they've been merged.
-    - Omit the wiki.
-    - Disable discussions.
-    - Allow PR's to have an option to auto-merge after approval.
-    - Allow PR's to have an option to easily update with the  branch.
-    - Allow merge commits as well as rebase and squash merges.
+- Delete branches after they’ve been merged.
+- Omit the wiki.
+- Disable discussions.
+- Allow PR’s to have an option to auto-merge after approval.
+- Allow PR’s to have an option to easily update with the branch.
+- Allow merge commits as well as rebase and squash merges.
 
-    Examples:
+Examples:
 
-        $ spaid_gh_set_repo_settings seedcase-project team
+    $ spaid_gh_set_repo_settings seedcase-project team
 
-    Positional arguments:
+Positional arguments:
 
-    - org: The name of the GitHub organization.
-    - repo: The name of the repository in the GitHub organization.
+- org: The name of the GitHub organization.
+- repo: The name of the repository in the GitHub organization.
 
 ``` bash
 spaid_gh_create_repo_from_local -h
 ```
 
+Usage: spaid_gh_create_repo_from_local \[<org>\] \[<repo>\]
+\[<description>\] \[-h\]
 
-    Usage: spaid_gh_create_repo_from_local [<org>] [<repo>] [<description>] [-h]
+Create a GitHub repository from a local (working directory) Git
+repository. This function will then
 
-    Create a GitHub repository from a local (working directory) Git repository.
-    This function will then
+- Sets the repo to public.
+- Uses the working directory as the root for the local Git repository.
+- Includes a description of the newly created repository.
+- Pushes the local repo to the new repo.
+- Disables the wiki.
+- Sets the URL for the homepage following the pattern
+  ‘https://REPO.ORG.org’ (assuming you use ‘.org’ as your domain ending
+  and that you manage your website build via something like Netlify).
+- Runs ‘spaid_gh_setup_new_repo’.
 
-    - Sets the repo to public.
-    - Uses the working directory as the root for the local Git repository.
-    - Includes a description of the newly created repository.
-    - Pushes the local repo to the new repo.
-    - Disables the wiki.
-    - Sets the URL for the homepage following the pattern 'https://REPO.ORG.org'
-      (assuming you use '.org' as your domain ending and that you manage your
-      website build via something like Netlify).
-    - Runs 'spaid_gh_setup_new_repo'.
+Examples:
 
-    Examples:
+    $ spaid_gh_create_repo_from_local seedcase-project seedcase-theme 'Seedcase theme repo'
 
-        $ spaid_gh_create_repo_from_local seedcase-project seedcase-theme 'Seedcase theme repo'
+Positional arguments:
 
-    Positional arguments:
-
-    - org: The name of the GitHub organization.
-    - repo: The name of the repository you want created in the GitHub organization.
-      Should match the folder this is run in.
-    - description: The description of the contents of the repository that is display
-      in the repository's listing.
+- org: The name of the GitHub organization.
+- repo: The name of the repository you want created in the GitHub
+  organization. Should match the folder this is run in.
+- description: The description of the contents of the repository that is
+  display in the repository’s listing.

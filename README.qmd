@@ -71,24 +71,29 @@ spaid_pr_merge_rebase -h
 ### GitHub organization management
 
 ```{bash}
+#| output: asis
 spaid_gh_org_invite -h
 ```
 
 ```{bash}
+#| output: asis
 spaid_gh_teams_list -h
 ```
 
 ```{bash}
+#| output: asis
 spaid_gh_teams_invite -h
 ```
 
 ### GitHub repository management
 
 ```{bash}
+#| output: asis
 spaid_gh_set_repo_settings -h
 ```
 
 ```{bash}
+#| output: asis
 spaid_gh_create_repo_from_local -h
 ```
 
