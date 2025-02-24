@@ -81,3 +81,14 @@ spaid_gh_teams_list -h
 ```{bash}
 spaid_gh_teams_invite -h
 ```
+
+### GitHub repository management
+
+```{bash}
+spaid_gh_set_repo_settings -h
+```
+
+```{bash}
+spaid_gh_create_repo_from_local -h
+```
+
