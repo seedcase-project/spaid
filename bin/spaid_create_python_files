@@ -30,7 +30,7 @@ then
     exit 1
 fi
 
-py_file=$(pwd)/$1/$2/$3.py
+py_file=$(pwd)/src/$1/$2/$3.py
 test_file=$(pwd)/tests/$2/test_$3.py
 touch $py_file $test_file
 
