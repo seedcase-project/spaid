@@ -110,7 +110,9 @@ Usage: spaid_pr_list \[-h\]
 
 Lists all open PRs in an organization.
 
-Examples: \$ spaid_pr_list seedcase-project
+Examples:
+
+    spaid_pr_list seedcase-project
 
 Positional argument:
 
@@ -122,14 +124,13 @@ spaid_pr_merge_rebase -h
 
 Usage: spaid_pr_merge_rebase \[-h\]
 
-Approve a PR and do a merge rebase on multiple PRs in a single
-repository. Requires admin privilege, so not everyone can use this
-command.
+Approve and do a merge rebase on multiple PRs in a single repository.
+Requires admin privilege, so not everyone can use this command.
 
 Examples:
 
     # Do merge rebase on (fake) PRs 1, 2, and 3.
-    $ spaid_pr_merge_rebase seedcase-project seedcase-theme 1 2 3
+    spaid_pr_merge_rebase seedcase-project seedcase-theme 1 2 3
 
 Positional arguments:
 
@@ -137,7 +138,46 @@ Positional arguments:
 - repo: The name of the repository in the GitHub organization.
 - PR number(s): One or more PR numbers to do the merge rebase for.
 
+``` bash
+spaid_pr_merge_chores -h
+```
+
+Usage: spaid_pr_merge_chores \[-h\]
+
+Go through all open PRs in a GitHub organization (or optionally in only
+one repo) and do a merge rebase on them if they contain the string
+‘chore(sync):’ or ‘ci(pre-commit):’ in the title. Requires admin
+privilege, so not everyone can use this command.
+
+Examples:
+
+    spaid_pr_merge_chores seedcase-project
+
+Positional arguments:
+
+- org: Required. The name of the GitHub organization.
+- repo: Optional. The name of the repository in the GitHub organization.
+  If not given, the command will run on all repositories in the
+  organization.
+
 ### GitHub organization management
+
+``` bash
+spaid_gh_repo_list -h
+```
+
+Usage: spaid_gh_repo_list \[-h\]
+
+Run this script to get a list of repositories within a specific
+organization.
+
+Example:
+
+    spaid_gh_repo_list seedcase-project
+
+Positional arguments:
+
+1.  organization: The GitHub organization name.
 
 ``` bash
 spaid_gh_org_invite -h
