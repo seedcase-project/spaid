@@ -1,0 +1,46 @@
+#!/bin/zsh
+
+help_text="
+Usage: `basename $0` [-h]
+
+Go through all open PRs in a GitHub organization (or optionally in only one repo)
+and do a merge rebase on them if they contain the string 'chore(sync):' or
+'ci(pre-commit):' in the title.  Requires admin privilege, so not everyone can
+use this command.
+
+Examples:
+
+    spaid_pr_merge_chores seedcase-project
+
+Positional arguments:
+
+- org: Required. The name of the GitHub organization.
+- repo: Optional. The name of the repository in the GitHub organization.
+  If not given, the command will run on all repositories in the organization.
+"
+
+if [[ "$1" == "-h" ]] ; then
+    echo $help_text
+    exit 0
+fi
+
+org="$1"
+repo="$2"
+
+chores=$(gh search prs \
+    --archived=false \
+    --owner "$org" \
+    --repo "$repo" \
+    --state open \
+    --limit 100 \
+    --json title,repository,number \
+    --jq 'map(select(.title | contains("chore(sync):") or contains("ci(pre-commit):")))'
+)
+
+echo $chores |
+    jq -c '.[]' |
+    while read pr; do
+        repo=$(echo $pr | jq -r ".repository.name")
+        number=$(echo $pr | jq -r ".number")
+        spaid_pr_merge_rebase "$org" "$repo" "$number"
+    done

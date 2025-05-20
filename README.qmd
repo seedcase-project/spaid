@@ -68,7 +68,17 @@ spaid_pr_list -h
 spaid_pr_merge_rebase -h
 ```
 
+```{bash}
+#| output: asis
+spaid_pr_merge_chores -h
+```
+
 ### GitHub organization management
+
+```{bash}
+#| output: asis
+spaid_gh_repo_list -h
+```
 
 ```{bash}
 #| output: asis

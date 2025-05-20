@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+help_text="
+Usage: `basename $0` [-h]
+
+Run this script to get a list of repositories within a specific organization.
+
+Example:
+
+    spaid_gh_repo_list seedcase-project
+
+Positional arguments:
+
+1. organization: The GitHub organization name.
+"
+
+if [[ "$1" == "-h" ]] ; then
+  echo $help_text
+  exit 0
+fi
+
+if [[ "$1" == "" ]] ; then
+  echo "Error: No organization name given. Please provide an organization name."
+  exit 1
+fi
+org="$1"
+
+gh repo list "$org" --json name -q ".[] | .name"

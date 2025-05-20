@@ -2,7 +2,11 @@
     just --list --unsorted
 
 # Run all recipes.
-run-all: reset-local-bin install build-readme
+run-all: reset-local-bin executable install build-readme
+
+# Set all files in `bin/` as executable
+executable:
+    chmod +x bin/*
 
 # Install all scripts in `bin/` to `~/.local/bin/`.
 install:

@@ -3,13 +3,13 @@
 help_text="
 Usage: `basename $0` [-h]
 
-Approve a PR and do a merge rebase on multiple PRs in a single repository.
+Approve and do a merge rebase on multiple PRs in a single repository.
 Requires admin privilege, so not everyone can use this command.
 
 Examples:
 
     # Do merge rebase on (fake) PRs 1, 2, and 3.
-    $ spaid_pr_merge_rebase seedcase-project seedcase-theme 1 2 3
+    spaid_pr_merge_rebase seedcase-project seedcase-theme 1 2 3
 
 Positional arguments:
 
@@ -23,6 +23,21 @@ if [[ "$1" == "-h" ]] ; then
     exit 0
 fi
 
+if [[ "$1" == "" ]] ; then
+    echo "Error: No organization name given. Please provide an organization name."
+    exit 1
+fi
+
+if [[ "$2" == "" ]] ; then
+    echo "Error: No repository name given. Please provide a repository name."
+    exit 1
+fi
+
+if [[ "$3" == "" ]] ; then
+    echo "Error: No PR number(s) given. Please provide one or more PR numbers."
+    exit 1
+fi
+
 org="$1"
 repo="$2"
 # Shifts are needed to get all numbers at the end.
@@ -32,6 +47,6 @@ pr_numbers=("$@")
 
 # Allow for loop access to each item in array using `[@]`.
 for pr_number in "${pr_numbers[@]}"; do
-    gh pr approve --repo "$org/$repo" $pr_number
+    gh pr review --repo "$org/$repo" $pr_number --approve --body "Approved via spaid helper command."
     gh pr merge --repo "$org/$repo" --admin --rebase $pr_number
 done
