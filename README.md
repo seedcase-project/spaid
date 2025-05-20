@@ -57,23 +57,24 @@ follow the Conventional Commit standard. This will only work if:
 Otherwise, you’ll get an error or nothing will happen.
 
 ``` bash
-spaid_setup_dev_workspace -h
+spaid_setup_precommit -h
 ```
 
-Usage: spaid_setup_dev_workspace \[-h\]
+Usage: spaid_setup_precommit \[-h\]
 
-Run this command to either setup up or update your development workspace
-to have any helper packages or tools installed and configured. These are
-the actions it does currently:
+Run this command to setup pre-commit on the repository. It will:
 
-- Installs Python package dependencies (if in a Poetry project)
-- Installs pre-commit hooks
-- Runs pre-commit hooks on all the files
+- Install pre-commit hooks
+- Do an initial run of the pre-commit hooks on all the files
 
 This command only works if:
 
 - you are in a local Git repository
 - the repository has a file called ‘.pre-commit-config.yaml’
+
+Examples:
+
+    spaid_setup_precommit
 
 ``` bash
 spaid_create_python_files -h
