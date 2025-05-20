@@ -6,7 +6,8 @@ Usage: `basename $0` [-h]
 Lists all open PRs in an organization.
 
 Examples:
-    $ spaid_pr_list seedcase-project
+
+    spaid_pr_list seedcase-project
 
 Positional argument:
 
@@ -18,13 +19,16 @@ if [[ "$1" == "-h" ]] ; then
     exit 0
 fi
 
-org="$1"
-# Needs to be converted to an array with `()`.
-repos=($(gh repo list "$org" --json name -q ".[] | .name"))
 
-# The `[@]` pulls out all items in the array.
-for repo in "${repos[@]}"; do
-    gh pr list --repo "$org/$repo" --json number,title,headRepository --template \
-        '{{range .}}{{ tablerow (.headRepository.name) (printf "#%v" .number | autocolor "cyan") .title }}{{end}}'
-done
+org="$1"
+
+if [[ "$org" == "" ]] ; then
+    echo "Error: No organization name given. Please provide an organization name."
+    exit 1
+fi
+
+gh search prs \
+    --owner "$org" \
+    --state open \
+    --limit 100
 
