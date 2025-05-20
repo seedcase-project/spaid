@@ -121,8 +121,9 @@ spaid_pr_merge_rebase -h
 
 Usage: spaid_pr_merge_rebase \[-h\]
 
-Do a merge rebase on multiple PRs in a single repository. Requires admin
-privilege, so not everyone can use this command.
+Approve a PR and do a merge rebase on multiple PRs in a single
+repository. Requires admin privilege, so not everyone can use this
+command.
 
 Examples:
 
