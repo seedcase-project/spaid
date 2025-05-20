@@ -9,7 +9,7 @@ Set up a repository with our Seedcase Project defaults. Settings used are:
 - Omit the wiki.
 - Disable discussions.
 - Allow PR's to have an option to auto-merge after approval.
-- Allow PR's to have an option to easily update with the `main` branch.
+- Allow PR's to have an option to easily update with the 'main' branch.
 - Allow merge commits as well as rebase and squash merges.
 
 Examples:
