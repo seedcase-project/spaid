@@ -197,9 +197,6 @@ Positional arguments:
 spaid_gh_set_repo_settings -h
 ```
 
-/home/luke/.local/bin/spaid_gh_set_repo_settings:3: command not found:
-main
-
 Usage: spaid_gh_set_repo_settings \[<org>\] \[<repo>\] \[-h\]
 
 Set up a repository with our Seedcase Project defaults. Settings used
@@ -209,7 +206,7 @@ are:
 - Omit the wiki.
 - Disable discussions.
 - Allow PR’s to have an option to auto-merge after approval.
-- Allow PR’s to have an option to easily update with the branch.
+- Allow PR’s to have an option to easily update with the ‘main’ branch.
 - Allow merge commits as well as rebase and squash merges.
 
 Examples:
