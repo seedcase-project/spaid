@@ -3,8 +3,8 @@
 help_text="
 Usage: `basename $0` [-h]
 
-Doa merge rebase on multiple PRs in a single repository. Requires admin
-privilege, so not everyone can use this command.
+Approve a PR and do a merge rebase on multiple PRs in a single repository.
+Requires admin privilege, so not everyone can use this command.
 
 Examples:
 
@@ -32,5 +32,6 @@ pr_numbers=("$@")
 
 # Allow for loop access to each item in array using `[@]`.
 for pr_number in "${pr_numbers[@]}"; do
+    gh pr approve --repo "$org/$repo" $pr_number
     gh pr merge --repo "$org/$repo" --admin --rebase $pr_number
 done
