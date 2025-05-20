@@ -1,25 +1,29 @@
 #!/bin/zsh
 
+help_text="
+Usage: `basename $0` [-h]
+
+Run this command to setup pre-commit on the repository. It will:
+
+- Install pre-commit hooks
+- Do an initial run of the pre-commit hooks on all the files
+
+This command only works if:
+
+- you are in a local Git repository
+- the repository has a file called '.pre-commit-config.yaml'
+
+Examples:
+
+    spaid_setup_precommit
+"
+
 if [[ "$1" == "-h" ]] ; then
-    echo "Usage: `basename $0` [-h]"
-    echo 
-    echo "Run this command to either setup up or update your development"
-    echo "workspace to have any helper packages or tools installed and"
-    echo "configured. These are the actions it does currently:"
-    echo 
-    echo "- Installs Python package dependencies (if in a Poetry project)"
-    echo "- Installs pre-commit hooks"
-    echo "- Runs pre-commit hooks on all the files"
-    echo 
-    echo "This command only works if:"
-    echo 
-    echo "- you are in a local Git repository"
-    echo "- the repository has a file called '.pre-commit-config.yaml'"
+    echo $help_text
     exit 0
 fi
 
 precommit_file=$(pwd)/.pre-commit-config.yaml
-pyproject_file=$(pwd)/pyproject.toml
 
 if [[ ! -f "$precommit_file" ]]
 then
@@ -27,15 +31,6 @@ then
     exit 1
 fi
 
-if [[ -f "$pyproject_file" ]]
-then
-    # Install dependencies just in case.
-    poetry install
-
-    # Install pre-commit hooks as defined in `.pre-commit-config.yaml`
-    poetry run pre-commit install
-    poetry run pre-commit run --all-files
-else
-    pre-commit install
-    pre-commit run --all-files
-fi
+# Install pre-commit hooks as defined in `.pre-commit-config.yaml`
+uvx pre-commit install
+uvx pre-commit run --all-files
