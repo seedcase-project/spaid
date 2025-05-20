@@ -23,16 +23,12 @@
     "chore", // Misc things, like renaming or deleting files
   ],
   "conventional-branch.format": "{Type}/{Branch}",
-  "[quarto][qmd]": {
+  "[quarto][qmd][markdown][md]": {
     "editor.formatOnSave": false
   },
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
   "python.languageServer": "Pylance",
-  "files.insertFinalNewline": true,
-  "cSpell.enableFiletypes": [
-    "quarto"
-  ],
-  "cSpell.language": "en,en-GB",
+  "files.insertFinalNewline": true
 }
