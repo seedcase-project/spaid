@@ -48,7 +48,7 @@ spaid_lint_commits_on_branch -h
 
 ```{bash}
 #| output: asis
-spaid_setup_dev_workspace -h
+spaid_setup_precommit -h
 ```
 
 ```{bash}
