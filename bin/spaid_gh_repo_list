@@ -4,6 +4,7 @@ help_text="
 Usage: `basename $0` [-h]
 
 Run this script to get a list of repositories within a specific organization.
+Outputs a repo spec in the format of 'org/repo' for each repository.
 
 Example:
 
@@ -25,4 +26,4 @@ if [[ "$1" == "" ]] ; then
 fi
 org="$1"
 
-gh repo list "$org" --json name -q ".[] | .name"
+gh repo list "$org" --json name -q ".[] | .name" | xargs -I {} echo "$org/{}" | sort
