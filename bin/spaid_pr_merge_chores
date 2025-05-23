@@ -34,7 +34,7 @@ chores=$(gh search prs \
     --state open \
     --limit 100 \
     --json title,repository,number \
-    --jq 'map(select(.title | contains("chore(sync):") or contains("ci(pre-commit):")))'
+    --jq 'map(select(.title | contains("chore(sync):") or contains("ci(pre-commit):") or contains("synced file(s)")))'
 )
 
 echo $chores |
@@ -42,5 +42,5 @@ echo $chores |
     while read pr; do
         repo=$(echo $pr | jq -r ".repository.name")
         number=$(echo $pr | jq -r ".number")
-        spaid_pr_merge_rebase "$org" "$repo" "$number"
+        spaid_pr_merge_rebase "$org/$repo" "$number"
     done
