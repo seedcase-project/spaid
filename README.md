@@ -248,7 +248,7 @@ Positional argument:
 Can do multiple repos at once with `xargs`:
 
 ``` bash
-spaid_gh_ruleset_list seedcase-project | xargs spaid_gh_ruleset_basic_protect_main
+spaid_gh_ruleset_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_main
 ```
 
 ### GitHub repository management
@@ -298,7 +298,7 @@ Positional arguments:
 Can do multiple repos at once with `xargs`:
 
 ``` bash
-spaid_gh_repo_list seedcase-project | xargs spaid_gh_set_repo_settings
+spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_set_repo_settings
 ```
 
 ``` bash
