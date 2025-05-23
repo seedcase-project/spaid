@@ -41,10 +41,8 @@ helper functions!
 
 ## Commands
 
-```{bash}
-#| output: asis
-spaid_lint_commits_on_branch -h
-```
+Many commands are designed to be used with `xargs` to process multiple
+commands at once. A note is given below the relevant commands for how.
 
 ```{bash}
 #| output: asis
@@ -73,12 +71,7 @@ spaid_pr_merge_rebase -h
 spaid_pr_merge_chores -h
 ```
 
-### GitHub organization management
-
-```{bash}
-#| output: asis
-spaid_gh_repo_list -h
-```
+### GitHub organization management (invitations, teams)
 
 ```{bash}
 #| output: asis
@@ -95,11 +88,40 @@ spaid_gh_teams_list -h
 spaid_gh_teams_invite -h
 ```
 
+### Rulesets
+
+```{bash}
+#| output: asis
+spaid_gh_ruleset_list -h
+```
+
+```{bash}
+#| output: asis
+spaid_gh_ruleset_basic_protect_main -h
+```
+
+Can do multiple repos at once with `xargs`:
+
+``` bash
+spaid_gh_ruleset_list seedcase-project | xargs spaid_gh_ruleset_basic_protect_main
+```
+
 ### GitHub repository management
 
 ```{bash}
 #| output: asis
+spaid_gh_repo_list -h
+```
+
+```{bash}
+#| output: asis
 spaid_gh_set_repo_settings -h
+```
+
+Can do multiple repos at once with `xargs`:
+
+``` bash
+spaid_gh_repo_list seedcase-project | xargs spaid_gh_set_repo_settings
 ```
 
 ```{bash}

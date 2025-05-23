@@ -40,21 +40,8 @@ helper functions!
 
 ## Commands
 
-``` bash
-spaid_lint_commits_on_branch -h
-```
-
-Usage: spaid_lint_commits_on_branch \[-h\]
-
-Run this command on a development Git branch to check if commit messages
-follow the Conventional Commit standard. This will only work if:
-
-- you are in a local Git repository
-- the repository is a Python project managed by Poetry
-- the Poetry project has commitizen installed
-- you are on a branch that isn’t main
-
-Otherwise, you’ll get an error or nothing will happen.
+Many commands are designed to be used with `xargs` to process multiple
+commands at once. A note is given below the relevant commands for how.
 
 ``` bash
 spaid_setup_precommit -h
@@ -124,7 +111,7 @@ spaid_pr_merge_rebase -h
 
 Usage: spaid_pr_merge_rebase \[-h\]
 
-Approve and do a merge rebase on multiple PRs in a single repository.
+Approve and do a merge rebase on one PRs in a single repository.
 Requires admin privilege, so not everyone can use this command.
 
 Examples:
@@ -134,9 +121,8 @@ Examples:
 
 Positional arguments:
 
-- org: The name of the GitHub organization.
-- repo: The name of the repository in the GitHub organization.
-- PR number(s): One or more PR numbers to do the merge rebase for.
+- repo_spec: The GitHub repository spec, in the format of ‘owner/repo’.
+- PR number: A PR number to do the merge rebase for.
 
 ``` bash
 spaid_pr_merge_chores -h
@@ -160,24 +146,7 @@ Positional arguments:
   If not given, the command will run on all repositories in the
   organization.
 
-### GitHub organization management
-
-``` bash
-spaid_gh_repo_list -h
-```
-
-Usage: spaid_gh_repo_list \[-h\]
-
-Run this script to get a list of repositories within a specific
-organization.
-
-Example:
-
-    spaid_gh_repo_list seedcase-project
-
-Positional arguments:
-
-1.  organization: The GitHub organization name.
+### GitHub organization management (invitations, teams)
 
 ``` bash
 spaid_gh_org_invite -h
@@ -233,7 +202,74 @@ Positional arguments:
 2.  team_slug: The GitHub organization team ‘slug’ name.
 3.  username: The GitHub username of the person you want to invite.
 
+### Rulesets
+
+``` bash
+spaid_gh_ruleset_list -h
+```
+
+Usage: spaid_gh_ruleset_list \[-h\]
+
+Lists the rulesets of a repository.
+
+Examples:
+
+    spaid_gh_ruleset_list seedcase-project team
+
+Positional argument:
+
+- repo_spec: The GitHub repository spec, in the format of ‘owner/repo’.
+- ruleset_id: Optional. The ID of the ruleset to list. If not provided,
+  all rulesets will be listed. If provided, the command will return all
+  the details of the ruleset.
+
+``` bash
+spaid_gh_ruleset_basic_protect_main -h
+```
+
+Usage: spaid_gh_ruleset_basic_protect_main \[-h\]
+
+Lists all open PRs in an organization. It provides basic protection of
+the main (default) branch. Organisation and repository admin can bypass
+the rules. Specifically:
+
+- Stop force pushes
+- Can’t delete
+- Can’t create
+
+Examples:
+
+    spaid_gh_ruleset_basic_protect_main seedcase-project/team
+
+Positional argument:
+
+- repo spec: The GitHub repository spec, in the format of ‘owner/repo’.
+
+Can do multiple repos at once with `xargs`:
+
+``` bash
+spaid_gh_ruleset_list seedcase-project | xargs spaid_gh_ruleset_basic_protect_main
+```
+
 ### GitHub repository management
+
+``` bash
+spaid_gh_repo_list -h
+```
+
+Usage: spaid_gh_repo_list \[-h\]
+
+Run this script to get a list of repositories within a specific
+organization. Outputs a repo spec in the format of ‘org/repo’ for each
+repository.
+
+Example:
+
+    spaid_gh_repo_list seedcase-project
+
+Positional arguments:
+
+1.  organization: The GitHub organization name.
 
 ``` bash
 spaid_gh_set_repo_settings -h
@@ -248,17 +284,22 @@ are:
 - Omit the wiki.
 - Disable discussions.
 - Allow PR’s to have an option to auto-merge after approval.
-- Allow PR’s to have an option to easily update with the ‘main’ branch.
 - Allow merge commits as well as rebase and squash merges.
+- Allow PR branch updates from ‘main’.
 
 Examples:
 
-    $ spaid_gh_set_repo_settings seedcase-project team
+    $ spaid_gh_set_repo_settings seedcase-project/team
 
 Positional arguments:
 
-- org: The name of the GitHub organization.
-- repo: The name of the repository in the GitHub organization.
+- repo spec: The GitHub repository spec, in the format of ‘owner/repo’.
+
+Can do multiple repos at once with `xargs`:
+
+``` bash
+spaid_gh_repo_list seedcase-project | xargs spaid_gh_set_repo_settings
+```
 
 ``` bash
 spaid_gh_create_repo_from_local -h
