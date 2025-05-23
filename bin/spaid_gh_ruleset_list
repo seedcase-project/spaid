@@ -1,0 +1,44 @@
+#!/bin/zsh
+
+help_text="
+Usage: `basename $0` [-h]
+
+Lists the rulesets of a repository.
+
+Examples:
+
+    spaid_gh_ruleset_list seedcase-project team
+
+Positional argument:
+
+- repo_spec: The GitHub repository spec, in the format of 'owner/repo'.
+- ruleset_id: Optional. The ID of the ruleset to list. If not provided, all
+  rulesets will be listed. If provided, the command will return all the details
+  of the ruleset.
+"
+
+if [[ "$1" == "-h" ]] ; then
+    echo $help_text
+    exit 0
+fi
+
+repo_spec="$1"
+ruleset_id="$3"
+
+if [[ "$repo_spec" == "" ]] ; then
+    echo "Error: No repo spec has been given. Please provide one."
+    exit 1
+fi
+
+if [[ -n "$ruleset_id" ]] ; then
+    gh api \
+      -H "Accept: application/vnd.github+json" \
+      -H "X-GitHub-Api-Version: 2022-11-28" \
+      /repos/$repo_spec/rulesets/$ruleset_id
+    exit 0
+fi
+
+gh api \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  /repos/$repo_spec/rulesets
