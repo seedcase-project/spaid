@@ -9,17 +9,16 @@ Set up a repository with our Seedcase Project defaults. Settings used are:
 - Omit the wiki.
 - Disable discussions.
 - Allow PR's to have an option to auto-merge after approval.
-- Allow PR's to have an option to easily update with the 'main' branch.
 - Allow merge commits as well as rebase and squash merges.
+- Allow PR branch updates from 'main'.
 
 Examples:
 
-    $ spaid_gh_set_repo_settings seedcase-project team
+    $ spaid_gh_set_repo_settings seedcase-project/team
 
 Positional arguments:
 
-- org: The name of the GitHub organization.
-- repo: The name of the repository in the GitHub organization.
+- repo spec: The GitHub repository spec, in the format of 'owner/repo'.
 "
 
 if [[ "$1" == "-h" ]] ; then
@@ -27,10 +26,14 @@ if [[ "$1" == "-h" ]] ; then
     exit 0
 fi
 
-org="$1"
-repo="$2"
+repo_spec="$1"
 
-gh repo edit $org/$repo \
+if [[ "$repo_spec" == "" ]] ; then
+    echo "Error: No repo spec has been given. Please provide one."
+    exit 1
+fi
+
+gh repo edit $repo_spec \
   --delete-branch-on-merge=true \
   --enable-wiki=false \
   --enable-discussions=false \

@@ -3,7 +3,7 @@
 help_text="
 Usage: `basename $0` [-h]
 
-Approve and do a merge rebase on multiple PRs in a single repository.
+Approve and do a merge rebase on one PRs in a single repository.
 Requires admin privilege, so not everyone can use this command.
 
 Examples:
@@ -13,9 +13,8 @@ Examples:
 
 Positional arguments:
 
-- org: The name of the GitHub organization.
-- repo: The name of the repository in the GitHub organization.
-- PR number(s): One or more PR numbers to do the merge rebase for.
+- repo_spec: The GitHub repository spec, in the format of 'owner/repo'.
+- PR number: A PR number to do the merge rebase for.
 "
 
 if [[ "$1" == "-h" ]] ; then
@@ -23,30 +22,40 @@ if [[ "$1" == "-h" ]] ; then
     exit 0
 fi
 
-if [[ "$1" == "" ]] ; then
-    echo "Error: No organization name given. Please provide an organization name."
+repo_spec="$1"
+pr_number="$2"
+
+if [[ "$repo_spec" == "" ]] ; then
+    echo "Error: No repo spec has been given. Please provide one."
     exit 1
 fi
 
-if [[ "$2" == "" ]] ; then
-    echo "Error: No repository name given. Please provide a repository name."
+if [[ "$pr_number" == "" ]] ; then
+    echo "Error: No PR number given. Please provide one."
     exit 1
 fi
 
-if [[ "$3" == "" ]] ; then
-    echo "Error: No PR number(s) given. Please provide one or more PR numbers."
-    exit 1
-fi
+approve_pr() {
+    local repo_spec="$1"
+    local pr_number="$2"
 
-org="$1"
-repo="$2"
-# Shifts are needed to get all numbers at the end.
-shift 2
-# Set as an array with `()`.
-pr_numbers=("$@")
+    gh pr review \
+        --repo "$repo_spec" $pr_number \
+        --approve \
+        --body "Approved via a [spaid](https://github.com/seedcase-project/spaid) helper command."
+}
 
-# Allow for loop access to each item in array using `[@]`.
-for pr_number in "${pr_numbers[@]}"; do
-    gh pr review --repo "$org/$repo" $pr_number --approve --body "Approved via spaid helper command."
-    gh pr merge --repo "$org/$repo" --admin --rebase $pr_number
-done
+merge_pr() {
+    local repo_spec="$1"
+    local pr_number="$2"
+
+    gh pr merge \
+        --repo "$repo_spec" \
+        --admin \
+        --rebase $pr_number
+}
+
+approve_pr "$repo_spec" "$pr_number"
+merge_pr "$repo_spec" "$pr_number"
+
+
