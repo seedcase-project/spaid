@@ -44,16 +44,6 @@ helper functions!
 Many commands are designed to be used with `xargs` to process multiple
 commands at once. A note is given below the relevant commands for how.
 
-```{bash}
-#| output: asis
-spaid_setup_precommit -h
-```
-
-```{bash}
-#| output: asis
-spaid_create_python_files -h
-```
-
 ### Pull requests
 
 ```{bash}
