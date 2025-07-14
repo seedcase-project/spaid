@@ -2,7 +2,7 @@
     just --list --unsorted
 
 # Run all recipes.
-run-all: reset-local-bin executable install build-readme
+run-all: check-commits check-spelling reset-local-bin executable install build-readme
 
 # Install the pre-commit hooks
 install-precommit:
@@ -29,3 +29,19 @@ build-readme:
 # Clean up the 'local/bin' by removing the spaid commands.
 reset-local-bin:
   find ~/.local/bin/* -name "spaid_" -delete
+
+# Run checks on commits with non-main branches
+check-commits:
+  #!/bin/zsh
+  branch_name=$(git rev-parse --abbrev-ref HEAD)
+  number_of_commits=$(git rev-list --count HEAD ^main)
+  if [[ ${branch_name} != "main" && ${number_of_commits} -gt 0 ]]
+  then
+    uvx --from commitizen cz check --rev-range main..HEAD
+  else
+    echo "Can't either be on ${branch_name} or have more than ${number_of_commits}."
+  fi
+
+# Check for spelling errors in files
+check-spelling:
+  uv run typos
