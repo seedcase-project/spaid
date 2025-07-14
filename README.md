@@ -43,50 +43,6 @@ helper functions!
 Many commands are designed to be used with `xargs` to process multiple
 commands at once. A note is given below the relevant commands for how.
 
-``` bash
-spaid_setup_precommit -h
-```
-
-Usage: spaid_setup_precommit \[-h\]
-
-Run this command to setup pre-commit on the repository. It will:
-
-- Install pre-commit hooks
-- Do an initial run of the pre-commit hooks on all the files
-
-This command only works if:
-
-- you are in a local Git repository
-- the repository has a file called ‘.pre-commit-config.yaml’
-
-Examples:
-
-    spaid_setup_precommit
-
-``` bash
-spaid_create_python_files -h
-```
-
-Usage: spaid_create_python_files \[-h\]
-
-Run this script to create a new function file with the corresponding
-test file.
-
-Example:
-
-    $ spaid_create_python_files seedcase_sprout core properties
-    Created:
-    ./seedcase_sprout/core/properties.py
-    ./tests/core/test_properties.py
-
-Positional arguments:
-
-- module: The folder of the module you want to create the new function
-  in.
-- submodule: The folder of the submodule or part, e.g. core vs cli, that
-  you want to create the new function in.
-- name: The name of the function you want to create.
-
 ### Pull requests
 
 ``` bash
