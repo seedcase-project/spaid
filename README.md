@@ -1,13 +1,33 @@
 
 
+- [spaid: Seedcase Project aid — a toolkit for developing
+  Seedcase](#spaid-seedcase-project-aid--a-toolkit-for-developing-seedcase)
+  - [Installation](#installation)
+  - [Commands](#commands)
+    - [Pull requests](#pull-requests)
+    - [GitHub organization management (invitations,
+      teams)](#github-organization-management-invitations-teams)
+    - [Rulesets](#rulesets)
+    - [GitHub repository management](#github-repository-management)
+
 <!-- Don't edit README.md directly, edit README.qmd and render to Markdown via `just build-readme` -->
 
 # spaid: Seedcase Project aid — a toolkit for developing Seedcase
 
 ## Installation
 
-Clone this repo to somewhere on your computer. Then open a terminal in
-the newly created folder and run:
+Many of these commands depend on the `gh` CLI tool, so you will need to
+install that first. See the [GitHub CLI](https://cli.github.com/) for
+installation instructions.
+
+Then, while in your Terminal, `cd` to a directory you want to store this
+repository and clone it with:
+
+``` bash
+gh repo clone seedcase-project/spaid
+```
+
+Then, `cd` into the newly created `spaid` folder and run:
 
 ``` bash
 just install
@@ -25,18 +45,20 @@ echo $PATH | grep -o "\.local/bin" | uniq
     .local/bin
 
 Then you don’t need to do anything else. If you don’t see that folder,
-find your `~/.zshrc`, open it in a text editor, and add this line to
+find your `~/.zshrc` , open it in a text editor, and add this line to
 that file:
 
 ``` bash
 export PATH=$HOME/.local/bin:$PATH
 ```
 
-Close your terminal and re-run the `echo` code above to check that it
-worked.
+We use [zsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH) as
+the default shell because it is the default on MacOS and is more
+powerful than the default Bash shell on many Linux distributions.
 
-If it worked and you now see the folder, you have installed the spaid
-helper functions!
+Close your terminal and re-run the `echo` code above to check that it
+worked. If it worked and you now see the folder, you have installed the
+spaid helper functions!
 
 ## Commands
 
@@ -44,6 +66,8 @@ Many commands are designed to be used with `xargs` to process multiple
 commands at once. A note is given below the relevant commands for how.
 
 ### Pull requests
+
+#### `spaid_pr_list`
 
 ``` bash
 spaid_pr_list -h
@@ -60,6 +84,8 @@ Examples:
 Positional argument:
 
 - org: The name of the GitHub organization.
+
+#### `spaid_pr_merge_rebase`
 
 ``` bash
 spaid_pr_merge_rebase -h
@@ -79,6 +105,8 @@ Positional arguments:
 
 - repo_spec: The GitHub repository spec, in the format of ‘owner/repo’.
 - PR number: A PR number to do the merge rebase for.
+
+#### `spaid_pr_merge_chores`
 
 ``` bash
 spaid_pr_merge_chores -h
@@ -104,6 +132,8 @@ Positional arguments:
 
 ### GitHub organization management (invitations, teams)
 
+#### `spaid_gh_org_invite`
+
 ``` bash
 spaid_gh_org_invite -h
 ```
@@ -120,6 +150,8 @@ Positional arguments:
 
 1.  organization: The GitHub organization name.
 2.  username: The GitHub username of the person you want to invite.
+
+#### `spaid_gh_teams_list`
 
 ``` bash
 spaid_gh_teams_list -h
@@ -139,6 +171,8 @@ Example:
 Positional arguments:
 
 1.  organization: The GitHub organization name.
+
+#### `spaid_gh_teams_invite`
 
 ``` bash
 spaid_gh_teams_invite -h
@@ -160,6 +194,8 @@ Positional arguments:
 
 ### Rulesets
 
+#### `spaid_gh_ruleset_list`
+
 ``` bash
 spaid_gh_ruleset_list -h
 ```
@@ -178,6 +214,8 @@ Positional argument:
 - ruleset_id: Optional. The ID of the ruleset to list. If not provided,
   all rulesets will be listed. If provided, the command will return all
   the details of the ruleset.
+
+#### `spaid_gh_ruleset_basic_protect_main`
 
 ``` bash
 spaid_gh_ruleset_basic_protect_main -h
@@ -209,6 +247,8 @@ spaid_gh_ruleset_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_prote
 
 ### GitHub repository management
 
+#### `spaid_gh_repo_list`
+
 ``` bash
 spaid_gh_repo_list -h
 ```
@@ -226,6 +266,8 @@ Example:
 Positional arguments:
 
 1.  organization: The GitHub organization name.
+
+#### `spaid_gh_set_repo_settings`
 
 ``` bash
 spaid_gh_set_repo_settings -h
@@ -256,6 +298,8 @@ Can do multiple repos at once with `xargs`:
 ``` bash
 spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_set_repo_settings
 ```
+
+#### `spaid_gh_create_repo_from_local`
 
 ``` bash
 spaid_gh_create_repo_from_local -h
