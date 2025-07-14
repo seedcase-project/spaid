@@ -31,4 +31,3 @@ gh search prs \
     --owner "$org" \
     --state open \
     --limit 100
-

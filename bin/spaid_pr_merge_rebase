@@ -57,5 +57,3 @@ merge_pr() {
 
 approve_pr "$repo_spec" "$pr_number"
 merge_pr "$repo_spec" "$pr_number"
-
-
