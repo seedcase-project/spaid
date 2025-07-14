@@ -37,7 +37,7 @@ check-commits:
   number_of_commits=$(git rev-list --count HEAD ^main)
   if [[ ${branch_name} != "main" && ${number_of_commits} -gt 0 ]]
   then
-    uv run cz check --rev-range main..HEAD
+    uvx --from commitizen cz check --rev-range main..HEAD
   else
     echo "Can't either be on ${branch_name} or have more than ${number_of_commits}."
   fi
