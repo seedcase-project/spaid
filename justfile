@@ -4,6 +4,15 @@
 # Run all recipes.
 run-all: reset-local-bin executable install build-readme
 
+# Install the pre-commit hooks
+install-precommit:
+  # Install pre-commit hooks
+  uvx pre-commit install
+  # Run pre-commit hooks on all files
+  uvx pre-commit run --all-files
+  # Update versions of pre-commit hooks
+  uvx pre-commit autoupdate
+
 # Set all files in `bin/` as executable
 executable:
     chmod +x bin/*
