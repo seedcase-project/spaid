@@ -42,7 +42,7 @@ approve_pr() {
     gh pr review \
         --repo "$repo_spec" $pr_number \
         --approve \
-        --body "Approved via a [spaid](https://github.com/seedcase-project/spaid) helper command."
+        --body "Approved and merged via a [spaid](https://github.com/seedcase-project/spaid) helper command."
 }
 
 merge_pr() {
