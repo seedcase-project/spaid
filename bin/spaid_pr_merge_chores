@@ -27,6 +27,11 @@ fi
 org="$1"
 repo="$2"
 
+if [[ "$org" == "" ]] ; then
+    echo "Error: No organization has been given. Please provide one."
+    exit 1
+fi
+
 chores=$(gh search prs \
     --archived=false \
     --owner "$org" \
