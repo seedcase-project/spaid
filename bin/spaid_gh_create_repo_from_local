@@ -14,7 +14,9 @@ This function will then
 - Sets the URL for the homepage following the pattern 'https://REPO.ORG.org'
   (assuming you use '.org' as your domain ending and that you manage your
   website build via something like Netlify).
-- Runs 'spaid_gh_setup_new_repo'.
+
+Afterwards, it's good practice to run 'spaid_gh_set_repo_settings' to set some
+default settings for the newly created repository.
 
 Examples:
 
@@ -38,6 +40,21 @@ org="$1"
 repo="$2"
 description="$3"
 
+if [[ "$org" == "" ]] ; then
+    echo "Error: No organization has been given. Please provide one."
+    exit 1
+fi
+
+if [[ "$repo" == "" ]] ; then
+    echo "Error: No repository name has been given. Please provide one."
+    exit 1
+fi
+
+if [[ "$description" == "" ]] ; then
+    echo "Error: No description has been given. Please provide one."
+    exit 1
+fi
+
 gh repo create $org/$repo \
   --public \
   --source=. \
@@ -45,5 +62,3 @@ gh repo create $org/$repo \
   --disable-wiki \
   --description $description \
   --homepage https://$repo.$org.org
-
-spaid_gh_setup_new_repo $org $repo
