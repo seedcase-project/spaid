@@ -215,6 +215,25 @@ Positional argument:
   all rulesets will be listed. If provided, the command will return all
   the details of the ruleset.
 
+#### `spaid_gh_ruleset_delete`
+
+``` bash
+spaid_gh_ruleset_delete -h
+```
+
+Usage: spaid_gh_ruleset_delete \[-h\]
+
+Delete a specific ruleset.
+
+Examples:
+
+    spaid_gh_ruleset_delete seedcase-project/team 1234
+
+Positional argument:
+
+- repo spec: The GitHub repository spec, in the format of ‘owner/repo’.
+- ruleset_id: The ID of the ruleset to list.
+
 #### `spaid_gh_ruleset_basic_protect_main`
 
 ``` bash
