@@ -28,18 +28,19 @@ build-readme:
 
 # Clean up the 'local/bin' by removing the spaid commands.
 reset-local-bin:
-  find ~/.local/bin/* -name "spaid_" -delete
+  find ~/.local/bin/* -name "spaid_*" -delete
 
-# Run checks on commits with non-main branches
+# Check the commit messages on the current branch that are not on the main branch
 check-commits:
-  #!/bin/zsh
+  #!/usr/bin/env bash
   branch_name=$(git rev-parse --abbrev-ref HEAD)
   number_of_commits=$(git rev-list --count HEAD ^main)
   if [[ ${branch_name} != "main" && ${number_of_commits} -gt 0 ]]
   then
+    # If issue happens, try `uv tool update-shell`
     uvx --from commitizen cz check --rev-range main..HEAD
   else
-    echo "Can't either be on ${branch_name} or have more than ${number_of_commits}."
+    echo "On 'main' or current branch doesn't have any commits."
   fi
 
 # Check for spelling errors in files
