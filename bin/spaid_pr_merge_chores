@@ -4,9 +4,9 @@ help_text="
 Usage: `basename $0` [-h]
 
 Go through all open PRs in a GitHub organization (or optionally in only one repo)
-and do a merge rebase on them if they contain the string 'chore(sync):' or
-'ci(pre-commit):' in the title.  Requires admin privilege, so not everyone can
-use this command.
+and do a merge rebase on them if they contain the string 'chore(sync):',
+'ci(pre-commit):', 'ci(deps)', or 'build(deps): bump' in the title.
+Requires admin privilege, so not everyone can use this command.
 
 Examples:
 
@@ -39,7 +39,7 @@ chores=$(gh search prs \
     --state open \
     --limit 100 \
     --json title,repository,number \
-    --jq 'map(select(.title | contains("chore(sync):") or contains("ci(pre-commit):") or contains("synced file(s)") or contains("ci(deps)")))'
+    --jq 'map(select(.title | contains("chore(sync):") or contains("ci(pre-commit):") or contains("synced file(s)") or contains("ci(deps)") or contains("build(deps): bump")))'
 )
 
 echo $chores |
