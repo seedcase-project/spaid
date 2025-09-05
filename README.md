@@ -116,8 +116,9 @@ Usage: spaid_pr_merge_chores \[-h\]
 
 Go through all open PRs in a GitHub organization (or optionally in only
 one repo) and do a merge rebase on them if they contain the string
-‘chore(sync):’ or ‘ci(pre-commit):’ in the title. Requires admin
-privilege, so not everyone can use this command.
+‘chore(sync):’, ‘ci(pre-commit):’, ‘ci(deps)’, or ‘build(deps): bump’ in
+the title. Requires admin privilege, so not everyone can use this
+command.
 
 Examples:
 
@@ -319,7 +320,9 @@ repository. This function will then
 - Sets the URL for the homepage following the pattern
   ‘https://REPO.ORG.org’ (assuming you use ‘.org’ as your domain ending
   and that you manage your website build via something like Netlify).
-- Runs ‘spaid_gh_setup_new_repo’.
+
+Afterwards, it’s good practice to run ‘spaid_gh_set_repo_settings’ to
+set some default settings for the newly created repository.
 
 Examples:
 
