@@ -113,6 +113,13 @@ spaid_gh_teams_invite -h
 spaid_gh_ruleset_list -h
 ```
 
+#### `spaid_gh_ruleset_delete`
+
+```{bash}
+#| output: asis
+spaid_gh_ruleset_delete -h
+```
+
 #### `spaid_gh_ruleset_basic_protect_main`
 
 ```{bash}
