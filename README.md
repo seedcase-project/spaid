@@ -223,9 +223,8 @@ spaid_gh_ruleset_basic_protect_main -h
 
 Usage: spaid_gh_ruleset_basic_protect_main \[-h\]
 
-Lists all open PRs in an organization. It provides basic protection of
-the main (default) branch. Organisation and repository admin can bypass
-the rules. Specifically:
+Create a ruleset to provide basic protection of the main (default)
+branch. No one can bypass these rules, which are specifically:
 
 - Stop force pushes
 - Can’t delete
@@ -319,7 +318,9 @@ repository. This function will then
 - Sets the URL for the homepage following the pattern
   ‘https://REPO.ORG.org’ (assuming you use ‘.org’ as your domain ending
   and that you manage your website build via something like Netlify).
-- Runs ‘spaid_gh_setup_new_repo’.
+
+Afterwards, it’s good practice to run ‘spaid_gh_set_repo_settings’ to
+set some default settings for the newly created repository.
 
 Examples:
 
