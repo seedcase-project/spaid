@@ -263,6 +263,35 @@ Can do multiple repos at once with `xargs`:
 spaid_gh_ruleset_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_main
 ```
 
+#### `spaid_gh_ruleset_basic_protect_tags`
+
+``` bash
+spaid_gh_ruleset_basic_protect_tags -h
+```
+
+Usage: spaid_gh_ruleset_basic_protect_tags \[-h\]
+
+Creates a ruleset to provide basic protection of any tags. No one can
+bypass the rules, which are specifically:
+
+- Stop force pushes
+- Can’t delete
+- Can’t update
+
+Examples:
+
+    spaid_gh_ruleset_basic_protect_tags seedcase-project/team
+
+Positional argument:
+
+- repo spec: The GitHub repository spec, in the format of ‘owner/repo’.
+
+Can do multiple repos at once with `xargs`:
+
+``` bash
+spaid_gh_ruleset_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_tags
+```
+
 ### GitHub repository management
 
 #### `spaid_gh_repo_list`
