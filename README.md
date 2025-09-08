@@ -116,8 +116,9 @@ Usage: spaid_pr_merge_chores \[-h\]
 
 Go through all open PRs in a GitHub organization (or optionally in only
 one repo) and do a merge rebase on them if they contain the string
-‘chore(sync):’ or ‘ci(pre-commit):’ in the title. Requires admin
-privilege, so not everyone can use this command.
+‘chore(sync):’, ‘ci(pre-commit):’, ‘ci(deps)’, or ‘build(deps): bump’ in
+the title. Requires admin privilege, so not everyone can use this
+command.
 
 Examples:
 
