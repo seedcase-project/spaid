@@ -39,7 +39,7 @@ chores=$(gh search prs \
     --state open \
     --limit 100 \
     --json title,repository,number \
-    --jq 'map(select(.title | contains("chore(sync):") or contains("ci(pre-commit):") or contains("synced file(s)") or contains("ci(deps)") or contains("build(deps): bump") or contains("build(deps-dev): bump")))'
+    --jq 'map(select(.title | startswith("chore(sync):") or startswith("ci(pre-commit):") or startswith("synced file(s)") or startswith("ci(deps)") or startswith("build(deps): bump") or startswith("build(deps-dev): bump")))'
 )
 
 echo $chores |
