@@ -45,4 +45,4 @@ check-commits:
 
 # Check for spelling errors in files
 check-spelling:
-  uv run typos
+  uvx typos
