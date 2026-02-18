@@ -130,8 +130,9 @@ spaid_gh_ruleset_basic_protect_main -h
 Can do multiple repos at once with `xargs`:
 
 ``` bash
-spaid_gh_ruleset_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_main
+spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_main
 ```
+
 #### `spaid_gh_ruleset_basic_protect_tags`
 
 ```{bash}
@@ -142,7 +143,20 @@ spaid_gh_ruleset_basic_protect_tags -h
 Can do multiple repos at once with `xargs`:
 
 ``` bash
-spaid_gh_ruleset_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_tags
+spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_tags
+```
+
+#### `spaid_gh_ruleset_require_pr`
+
+```{bash}
+#| output: asis
+spaid_gh_ruleset_require_pr -h
+```
+
+Can do multiple repos at once with `xargs`:
+
+``` bash
+spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_ruleset_require_pr
 ```
 
 ### GitHub repository management

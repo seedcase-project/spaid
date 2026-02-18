@@ -207,7 +207,7 @@ Lists the rulesets of a repository.
 
 Examples:
 
-    spaid_gh_ruleset_list seedcase-project team
+    spaid_gh_ruleset_list seedcase-project/team
 
 Positional argument:
 
@@ -261,7 +261,7 @@ Positional argument:
 Can do multiple repos at once with `xargs`:
 
 ``` bash
-spaid_gh_ruleset_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_main
+spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_main
 ```
 
 #### `spaid_gh_ruleset_basic_protect_tags`
@@ -290,7 +290,45 @@ Positional argument:
 Can do multiple repos at once with `xargs`:
 
 ``` bash
-spaid_gh_ruleset_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_tags
+spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_tags
+```
+
+#### `spaid_gh_ruleset_require_pr`
+
+``` bash
+spaid_gh_ruleset_require_pr -h
+```
+
+Usage: spaid_gh_ruleset_require_pr \[-h\]
+
+Create a ruleset to require a pull request to the main (default) branch.
+Rules are:
+
+- Require at least 1 approving review
+- Dismiss stale reviews on push
+- Require code owner review
+- Require approval of the last push
+- Require resolution of all review threads
+- Allow squash and rebase merge methods
+
+And bypass rules are:
+
+- Organization admins can bypass rules on a pull request only
+- The GitHub App ‘release token’ can bypass rules so it can push to main
+  when updating the version and making a release.
+
+Examples:
+
+    spaid_gh_ruleset_require_pr seedcase-project/team
+
+Positional argument:
+
+- repo spec: The GitHub repository spec, in the format of ‘owner/repo’.
+
+Can do multiple repos at once with `xargs`:
+
+``` bash
+spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_ruleset_require_pr
 ```
 
 ### GitHub repository management
