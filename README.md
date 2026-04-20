@@ -114,11 +114,10 @@ spaid_pr_merge_chores -h
 
 Usage: spaid_pr_merge_chores \[-h\]
 
-Go through all open PRs in a GitHub organization (or optionally in only
-one repo) and do a merge rebase on them if they contain the string
-‘chore(sync):’, ‘ci(pre-commit):’, ‘ci(deps)’, or ‘build(deps): bump’ in
-the title. Requires admin privilege, so not everyone can use this
-command.
+Go through all open PRs in a GitHub organization and do a rebase merge
+on them if they start with the string ‘ci’ or ‘build’ in the title and
+if the author is either ‘dependabot\[bot\]’ or ‘pre-commit-ci\[bot\]’.
+Requires admin privilege to run.
 
 Examples:
 
@@ -127,9 +126,6 @@ Examples:
 Positional arguments:
 
 - org: Required. The name of the GitHub organization.
-- repo: Optional. The name of the repository in the GitHub organization.
-  If not given, the command will run on all repositories in the
-  organization.
 
 ### GitHub organization management (invitations, teams)
 
