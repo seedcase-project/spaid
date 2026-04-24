@@ -3,7 +3,7 @@
 help_text="
 Usage: `basename $0` [-h]
 
-Go through all open PRs in a GitHub organization and do a rebase merge on them
+Go through all open PRs in a GitHub organization and do a squash merge on them
 if they start with the string 'ci' or 'build' in the title and if the author is
 either 'dependabot[bot]' or 'pre-commit-ci[bot]'. Requires admin privilege to run.
 
@@ -44,5 +44,5 @@ echo $chores |
     while read pr; do
         repo=$(echo $pr | jq -r ".repository.name")
         number=$(echo $pr | jq -r ".number")
-        spaid_pr_merge_rebase "$org/$repo" "$number"
+        spaid_pr_merge_squash "$org/$repo" "$number"
     done

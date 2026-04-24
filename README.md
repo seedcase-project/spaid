@@ -85,26 +85,26 @@ Positional argument:
 
 - org: The name of the GitHub organization.
 
-#### `spaid_pr_merge_rebase`
+#### `spaid_pr_merge_squash`
 
 ``` bash
-spaid_pr_merge_rebase -h
+spaid_pr_merge_squash -h
 ```
 
-Usage: spaid_pr_merge_rebase \[-h\]
+Usage: spaid_pr_merge_squash \[-h\]
 
-Approve and do a merge rebase on one PRs in a single repository.
+Approve and do a squash merge on one PRs in a single repository.
 Requires admin privilege, so not everyone can use this command.
 
 Examples:
 
-    # Do merge rebase on (fake) PRs 1, 2, and 3.
+    # Do squash merge on (fake) PRs 1, 2, and 3.
     spaid_pr_merge_rebase seedcase-project seedcase-theme 1 2 3
 
 Positional arguments:
 
 - repo_spec: The GitHub repository spec, in the format of ‘owner/repo’.
-- PR number: A PR number to do the merge rebase for.
+- PR number: A PR number to do the squash merge for.
 
 #### `spaid_pr_merge_chores`
 
@@ -114,7 +114,7 @@ spaid_pr_merge_chores -h
 
 Usage: spaid_pr_merge_chores \[-h\]
 
-Go through all open PRs in a GitHub organization and do a rebase merge
+Go through all open PRs in a GitHub organization and do a squash merge
 on them if they start with the string ‘ci’ or ‘build’ in the title and
 if the author is either ‘dependabot\[bot\]’ or ‘pre-commit-ci\[bot\]’.
 Requires admin privilege to run.
@@ -364,7 +364,8 @@ are:
 - Omit the wiki.
 - Disable discussions.
 - Allow PR’s to have an option to auto-merge after approval.
-- Allow merge commits as well as rebase and squash merges.
+- Allow only squash merges and use the PR title and description as the
+  squash commit message.
 - Allow PR branch updates from ‘main’.
 
 Examples:
