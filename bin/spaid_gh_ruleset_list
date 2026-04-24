@@ -7,7 +7,7 @@ Lists the rulesets of a repository.
 
 Examples:
 
-    spaid_gh_ruleset_list seedcase-project team
+    spaid_gh_ruleset_list seedcase-project/team
 
 Positional argument:
 
@@ -23,7 +23,7 @@ if [[ "$1" == "-h" ]] ; then
 fi
 
 repo_spec="$1"
-ruleset_id="$3"
+ruleset_id="$2"
 
 if [[ "$repo_spec" == "" ]] ; then
     echo "Error: No repo spec has been given. Please provide one."
