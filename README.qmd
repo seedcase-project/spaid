@@ -67,11 +67,11 @@ commands at once. A note is given below the relevant commands for how.
 spaid_pr_list -h
 ```
 
-#### `spaid_pr_merge_rebase`
+#### `spaid_pr_merge_squash`
 
 ```{bash}
 #| output: asis
-spaid_pr_merge_rebase -h
+spaid_pr_merge_squash -h
 ```
 
 #### `spaid_pr_merge_chores`
