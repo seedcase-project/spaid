@@ -28,16 +28,22 @@ if [[ "$org" == "" ]] ; then
     exit 1
 fi
 
-chores=$(gh search prs \
-    --archived=false \
-    --owner "$org" \
-    --state open \
-    --limit 100 \
-    --author "dependabot[bot]" \
-    --author "pre-commit-ci[bot]" \
-    --json title,repository,number \
-    --jq 'map(select(.title | startswith("ci") or startswith("build")))'
-)
+search_prs() {
+  local author="$1"
+  gh search prs \
+      --archived=false \
+      --owner "$org" \
+      --state open \
+      --limit 100 \
+      --author "$author" \
+      --json title,repository,number \
+      --jq 'map(select(.title | startswith("ci") or startswith("build")))'
+}
+
+# Can only search for one author at a time, so we have to do it twice
+# and combine the results.
+chores=$(search_prs "dependabot[bot]")
+chores+=$(search_prs "pre-commit-ci[bot]")
 
 echo $chores |
     jq -c '.[]' |
