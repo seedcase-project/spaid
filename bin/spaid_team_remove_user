@@ -3,17 +3,17 @@
 help_text="
 Usage: `basename $0` [-h]
 
-Add a GitHub user to a team in a GitHub organization.
+Remove a GitHub user from a team in a GitHub organization.
 
 Example:
 
-    $ spaid_team_add_user seedcase-project admin lwjohnst86
+    $ spaid_team_remove_user seedcase-project admin lwjohnst86
 
 Positional arguments:
 
 1. organization: The GitHub organization name.
 2. team_slug: The GitHub organization team 'slug' name.
-3. username: The GitHub username of the person you want to add.
+3. username: The GitHub username of the person you want to remove.
 "
 
 if [[ "$1" == "-h" ]] ; then
@@ -26,7 +26,7 @@ team_slug="$2"
 user="$3"
 
 gh api \
-  --method PUT \
+  --method DELETE \
   -H "Accept: application/vnd.github+json" \
   -H "X-GitHub-Api-Version: 2026-03-10" \
   /orgs/${org}/teams/${team_slug}/memberships/${user}

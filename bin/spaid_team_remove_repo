@@ -1,0 +1,43 @@
+#!/bin/zsh
+
+help_text="
+Usage: `basename $0` [-h]
+
+Remove a repository from a team in a GitHub organization.
+
+Example:
+
+    $ spaid_team_repo_remove admin seedcase-project/my-repo
+
+Positional arguments:
+
+1. team_slug: The GitHub organization team 'slug' name.
+2. repository_spec: The GitHub repository specification in the format 'organization/repo'.
+"
+
+if [[ "$1" == "-h" ]] ; then
+    echo $help_text
+    exit 0
+fi
+
+team_slug="$1"
+repository_spec="$2"
+
+if [[ "$team_slug" == "" ]] ; then
+  echo "Error: No team slug has been given. Please provide one."
+  exit 1
+fi
+
+if [[ "$repository_spec" == "" ]] ; then
+  echo "Error: No repository specification has been given. Please provide one."
+  exit 1
+fi
+
+org=$(echo $repository_spec | cut -d'/' -f1)
+repo=$(echo $repository_spec | cut -d'/' -f2)
+
+gh api \
+  --method DELETE \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2026-03-10" \
+  /orgs/${org}/teams/${team_slug}/repos/${org}/${repo}
