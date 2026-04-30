@@ -83,18 +83,18 @@ spaid_pr_merge_chores -h
 
 ### GitHub organization management (invitations, teams)
 
-#### `spaid_gh_org_invite`
+#### `spaid_org_invite`
 
 ```{bash}
 #| output: asis
-spaid_gh_org_invite -h
+spaid_org_invite -h
 ```
 
-#### `spaid_gh_teams_list`
+#### `spaid_team_list`
 
 ```{bash}
 #| output: asis
-spaid_gh_teams_list -h
+spaid_team_list -h
 ```
 
 #### `spaid_team_create`

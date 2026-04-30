@@ -7,7 +7,7 @@ Invite a GitHub user to a GitHub organization.
 
 Example:
 
-    $ spaid_gh_org_invite seedcase-project lwjohnst86
+    $ spaid_org_invite seedcase-project lwjohnst86
 
 Positional arguments:
 
