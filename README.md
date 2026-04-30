@@ -129,39 +129,39 @@ Positional arguments:
 
 ### GitHub organization management (invitations, teams)
 
-#### `spaid_gh_org_invite`
+#### `spaid_org_invite`
 
 ``` bash
-spaid_gh_org_invite -h
+spaid_org_invite -h
 ```
 
-Usage: spaid_gh_org_invite \[-h\]
+Usage: spaid_org_invite \[-h\]
 
 Invite a GitHub user to a GitHub organization.
 
 Example:
 
-    $ spaid_gh_org_invite seedcase-project lwjohnst86
+    $ spaid_org_invite seedcase-project lwjohnst86
 
 Positional arguments:
 
 1.  organization: The GitHub organization name.
 2.  username: The GitHub username of the person you want to invite.
 
-#### `spaid_gh_teams_list`
+#### `spaid_team_list`
 
 ``` bash
-spaid_gh_teams_list -h
+spaid_team_list -h
 ```
 
-Usage: spaid_gh_teams_list \[-h\]
+Usage: spaid_team_list \[-h\]
 
-Run this script to get a list of teams (their ‘slug’, not the
-human-readable name) within a specific organization.
+List all teams (their ‘slug’, not the human-readable name) within a
+specific organization.
 
 Example:
 
-    $ spaid_gh_list_teams seedcase-project
+    $ spaid_team_list seedcase-project
     admin
     developers
 
@@ -501,6 +501,7 @@ repository. This function will then
 - Sets the URL for the homepage following the pattern
   ‘https://REPO.ORG.org’ (assuming you use ‘.org’ as your domain ending
   and that you manage your website build via something like Netlify).
+- Optionally gives a team access to the repository.
 
 Afterwards, it’s good practice to run ‘spaid_gh_set_repo_settings’ to
 set some default settings for the newly created repository.
@@ -516,3 +517,7 @@ Positional arguments:
   organization. Should match the folder this is run in.
 - description: The description of the contents of the repository that is
   display in the repository’s listing.
+
+Optional arguments:
+
+- team: The name of the team to add to the repo.

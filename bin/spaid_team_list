@@ -3,12 +3,12 @@
 help_text="
 Usage: `basename $0` [-h]
 
-Run this script to get a list of teams (their 'slug', not the human-readable
-name) within a specific organization.
+List all teams (their 'slug', not the human-readable name) within a specific
+organization.
 
 Example:
 
-    $ spaid_gh_list_teams seedcase-project
+    $ spaid_team_list seedcase-project
     admin
     developers
 
@@ -22,8 +22,16 @@ if [[ "$1" == "-h" ]] ; then
   exit 0
 fi
 
+org="$1"
+
+if [[ -z "$org" ]] ; then
+  echo "Error: organization name is required."
+  echo $help_text
+  exit 1
+fi
+
 gh api \
   -H "Accept: application/vnd.github+json" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
-  /orgs/$1/teams \
+  /orgs/$org/teams \
   -q ".[] | .slug"
