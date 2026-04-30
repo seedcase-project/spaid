@@ -169,6 +169,44 @@ Positional arguments:
 
 1.  organization: The GitHub organization name.
 
+#### `spaid_team_create`
+
+``` bash
+spaid_team_create -h
+```
+
+Usage: spaid_team_create \[-h\]
+
+Create a team in a GitHub organization.
+
+Example:
+
+    $ spaid_team_create seedcase-project admin
+
+Positional arguments:
+
+1.  organization: The GitHub organization name.
+2.  team_slug: The GitHub organization team ‘slug’ name.
+
+#### `spaid_team_delete`
+
+``` bash
+spaid_team_delete -h
+```
+
+Usage: spaid_team_delete \[-h\]
+
+Delete a team in a GitHub organization.
+
+Example:
+
+    $ spaid_team_delete seedcase-project admin
+
+Positional arguments:
+
+1.  organization: The GitHub organization name.
+2.  team_slug: The GitHub organization team ‘slug’ name.
+
 #### `spaid_team_add_user`
 
 ``` bash
@@ -187,7 +225,68 @@ Positional arguments:
 
 1.  organization: The GitHub organization name.
 2.  team_slug: The GitHub organization team ‘slug’ name.
-3.  username: The GitHub username of the person you want to invite.
+3.  username: The GitHub username of the person you want to add.
+
+#### `spaid_team_remove_user`
+
+``` bash
+spaid_team_remove_user -h
+```
+
+Usage: spaid_team_remove_user \[-h\]
+
+Remove a GitHub user from a team in a GitHub organization.
+
+Example:
+
+    $ spaid_team_remove_user seedcase-project admin lwjohnst86
+
+Positional arguments:
+
+1.  organization: The GitHub organization name.
+2.  team_slug: The GitHub organization team ‘slug’ name.
+3.  username: The GitHub username of the person you want to remove.
+
+#### `spaid_team_add_repo`
+
+``` bash
+spaid_team_add_repo -h
+```
+
+Usage: spaid_team_add_repo \[-h\]
+
+Add a repository to a team in a GitHub organization. Adds the ‘push’
+permission, which allows team members to push to the repository.
+
+Example:
+
+    $ spaid_team_repo_add admin seedcase-project/my-repo
+
+Positional arguments:
+
+1.  team_slug: The GitHub organization team ‘slug’ name.
+2.  repository_spec: The GitHub repository specification in the format
+    ‘organization/repo’.
+
+#### `spaid_team_remove_repo`
+
+``` bash
+spaid_team_remove_repo -h
+```
+
+Usage: spaid_team_remove_repo \[-h\]
+
+Remove a repository from a team in a GitHub organization.
+
+Example:
+
+    $ spaid_team_repo_remove admin seedcase-project/my-repo
+
+Positional arguments:
+
+1.  team_slug: The GitHub organization team ‘slug’ name.
+2.  repository_spec: The GitHub repository specification in the format
+    ‘organization/repo’.
 
 ### Rulesets
 
@@ -402,7 +501,6 @@ repository. This function will then
 - Sets the URL for the homepage following the pattern
   ‘https://REPO.ORG.org’ (assuming you use ‘.org’ as your domain ending
   and that you manage your website build via something like Netlify).
-- Optionally gives a team access to the repository.
 
 Afterwards, it’s good practice to run ‘spaid_gh_set_repo_settings’ to
 set some default settings for the newly created repository.
@@ -418,7 +516,3 @@ Positional arguments:
   organization. Should match the folder this is run in.
 - description: The description of the contents of the repository that is
   display in the repository’s listing.
-
-Optional arguments:
-
-- team: The name of the team to add to the repo.

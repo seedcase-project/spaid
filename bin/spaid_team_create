@@ -1,0 +1,43 @@
+#!/bin/zsh
+
+help_text="
+Usage: `basename $0` [-h]
+
+Create a team in a GitHub organization.
+
+Example:
+
+    $ spaid_team_create seedcase-project admin
+
+Positional arguments:
+
+1. organization: The GitHub organization name.
+2. team_slug: The GitHub organization team 'slug' name.
+"
+
+if [[ "$1" == "-h" ]] ; then
+    echo $help_text
+    exit 0
+fi
+
+org="$1"
+team_slug="$2"
+
+if [[ "$org" == "" ]] ; then
+  echo "Error: No organization has been given. Please provide one."
+  exit 1
+fi
+
+if [[ "$team_slug" == "" ]] ; then
+  echo "Error: No team slug has been given. Please provide one."
+  exit 1
+fi
+
+# Closed privacy = visible to all members. (default is secret)
+gh api \
+  --method POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2026-03-10" \
+  /orgs/${org}/teams \
+  -f "name=${team_slug}" \
+  -f 'privacy=closed'

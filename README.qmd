@@ -97,11 +97,46 @@ spaid_gh_org_invite -h
 spaid_gh_teams_list -h
 ```
 
+#### `spaid_team_create`
+
+```{bash}
+#| output: asis
+spaid_team_create -h
+```
+
+#### `spaid_team_delete`
+
+```{bash}
+#| output: asis
+spaid_team_delete -h
+```
+
 #### `spaid_team_add_user`
 
 ```{bash}
 #| output: asis
 spaid_team_add_user -h
+```
+
+#### `spaid_team_remove_user`
+
+```{bash}
+#| output: asis
+spaid_team_remove_user -h
+```
+
+#### `spaid_team_add_repo`
+
+```{bash}
+#| output: asis
+spaid_team_add_repo -h
+```
+
+#### `spaid_team_remove_repo`
+
+```{bash}
+#| output: asis
+spaid_team_remove_repo -h
 ```
 
 ### Rulesets
