@@ -169,19 +169,19 @@ Positional arguments:
 
 1.  organization: The GitHub organization name.
 
-#### `spaid_gh_teams_invite`
+#### `spaid_team_add_user`
 
 ``` bash
-spaid_gh_teams_invite -h
+spaid_team_add_user -h
 ```
 
-Usage: spaid_gh_teams_invite \[-h\]
+Usage: spaid_team_add_user \[-h\]
 
 Add a GitHub user to a team in a GitHub organization.
 
 Example:
 
-    $ spaid_gh_teams_invite seedcase-project admin lwjohnst86
+    $ spaid_team_add_user seedcase-project admin lwjohnst86
 
 Positional arguments:
 
@@ -402,6 +402,7 @@ repository. This function will then
 - Sets the URL for the homepage following the pattern
   ‘https://REPO.ORG.org’ (assuming you use ‘.org’ as your domain ending
   and that you manage your website build via something like Netlify).
+- Optionally gives a team access to the repository.
 
 Afterwards, it’s good practice to run ‘spaid_gh_set_repo_settings’ to
 set some default settings for the newly created repository.
@@ -417,3 +418,7 @@ Positional arguments:
   organization. Should match the folder this is run in.
 - description: The description of the contents of the repository that is
   display in the repository’s listing.
+
+Optional arguments:
+
+- team: The name of the team to add to the repo.

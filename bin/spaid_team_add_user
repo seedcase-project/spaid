@@ -7,7 +7,7 @@ Add a GitHub user to a team in a GitHub organization.
 
 Example:
 
-    $ spaid_gh_teams_invite seedcase-project admin lwjohnst86
+    $ spaid_team_add_user seedcase-project admin lwjohnst86
 
 Positional arguments:
 
@@ -22,11 +22,11 @@ if [[ "$1" == "-h" ]] ; then
 fi
 
 org="$1"
-team="$2"
+team_slug="$2"
 user="$3"
 
 gh api \
   --method PUT \
   -H "Accept: application/vnd.github+json" \
-  -H "X-GitHub-Api-Version: 2022-11-28" \
-  /orgs/${org}/teams/${team}/memberships/${user}
+  -H "X-GitHub-Api-Version: 2026-03-10" \
+  /orgs/${org}/teams/${team_slug}/memberships/${user}
