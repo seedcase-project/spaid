@@ -14,6 +14,7 @@ This function will then
 - Sets the URL for the homepage following the pattern 'https://REPO.ORG.org'
   (assuming you use '.org' as your domain ending and that you manage your
   website build via something like Netlify).
+- Optionally gives a team access to the repository.
 
 Afterwards, it's good practice to run 'spaid_gh_set_repo_settings' to set some
 default settings for the newly created repository.
@@ -29,6 +30,10 @@ Positional arguments:
   Should match the folder this is run in.
 - description: The description of the contents of the repository that is display
   in the repository's listing.
+
+Optional arguments:
+
+- team: The name of the team to add to the repo.
 "
 
 if [[ "$1" == "-h" ]] ; then
@@ -39,6 +44,7 @@ fi
 org="$1"
 repo="$2"
 description="$3"
+team="$4"
 
 if [[ "$org" == "" ]] ; then
     echo "Error: No organization has been given. Please provide one."
@@ -55,10 +61,17 @@ if [[ "$description" == "" ]] ; then
     exit 1
 fi
 
+if [[ "$team" != "" ]] ; then
+    team_arg="--team $team"
+else
+    team_arg=""
+fi
+
 gh repo create $org/$repo \
   --public \
   --source=. \
   --push \
   --disable-wiki \
   --description $description \
-  --homepage https://$repo.$org.org
+  --homepage https://$repo.$org.org \
+  $team_arg
