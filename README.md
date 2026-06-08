@@ -509,8 +509,8 @@ are:
 - Omit the wiki.
 - Disable discussions.
 - Allow PR’s to have an option to auto-merge after approval.
-- Allow only squash merges and use the PR title and description as the
-  squash commit message.
+- Allow only squash merges and use the PR title as the squash commit
+  message.
 - Allow PR branch updates from ‘main’.
 
 Examples:
