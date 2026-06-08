@@ -9,7 +9,7 @@ Set up a repository with our Seedcase Project defaults. Settings used are:
 - Omit the wiki.
 - Disable discussions.
 - Allow PR's to have an option to auto-merge after approval.
-- Allow only squash merges and use the PR title and description as the squash commit message.
+- Allow only squash merges and use the PR title as the squash commit message.
 - Allow PR branch updates from 'main'.
 
 Examples:
@@ -41,5 +41,5 @@ gh repo edit $repo_spec \
   --enable-merge-commit=false \
   --enable-rebase-merge=false \
   --enable-squash-merge=true \
-  --squash-merge-commit-message "pr-title-description" \
+  --squash-merge-commit-message "pr-title" \
   --allow-update-branch
