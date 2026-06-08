@@ -8,7 +8,7 @@ organization.
 
 Example:
 
-    $ spaid_team_list seedcase-project
+    $ spaid_org_list_teams seedcase-project
     admin
     developers
 

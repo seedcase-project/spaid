@@ -148,26 +148,72 @@ Positional arguments:
 1.  organization: The GitHub organization name.
 2.  username: The GitHub username of the person you want to invite.
 
-#### `spaid_team_list`
+#### `spaid_org_list_teams`
 
 ``` bash
-spaid_team_list -h
+spaid_org_list_teams -h
 ```
 
-Usage: spaid_team_list \[-h\]
+Usage: spaid_org_list_teams \[-h\]
 
 List all teams (their ‘slug’, not the human-readable name) within a
 specific organization.
 
 Example:
 
-    $ spaid_team_list seedcase-project
+    $ spaid_org_list_teams seedcase-project
     admin
     developers
 
 Positional arguments:
 
 1.  organization: The GitHub organization name.
+
+#### `spaid_team_list_users`
+
+``` bash
+spaid_team_list_users -h
+```
+
+Usage: spaid_team_list_users \[-h\]
+
+List all users (their ‘login’, not the human-readable name) within a
+specific team in a GitHub organization.
+
+Example:
+
+    $ spaid_team_list_users seedcase-project platform-tools
+    lwjohnst86
+
+Positional arguments:
+
+1.  organization: The GitHub organization name.
+2.  team_slug: The GitHub organization team ‘slug’ name.
+
+#### `spaid_team_list_repos`
+
+``` bash
+spaid_team_list_repos -h
+```
+
+Usage: spaid_team_list_repos \[-h\]
+
+List all repositories for a specific team within a specific
+organization.
+
+Example:
+
+    $ spaid_team_list_repos seedcase-project platform-tools
+    seedcase-project/seedcase-theme
+    seedcase-project/.github
+    seedcase-project/spaid
+    seedcase-project/zen-do
+    seedcase-project/seedcase-soil
+
+Positional arguments:
+
+1.  organization: The GitHub organization name.
+2.  team_slug: The GitHub organization team ‘slug’ name.
 
 #### `spaid_team_create`
 
@@ -356,7 +402,7 @@ Positional argument:
 Can do multiple repos at once with `xargs`:
 
 ``` bash
-spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_main
+spaid_org_list_repos seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_main
 ```
 
 #### `spaid_gh_ruleset_basic_protect_tags`
@@ -385,7 +431,7 @@ Positional argument:
 Can do multiple repos at once with `xargs`:
 
 ``` bash
-spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_tags
+spaid_org_list_repos seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_tags
 ```
 
 #### `spaid_gh_ruleset_require_pr`
@@ -423,18 +469,18 @@ Positional argument:
 Can do multiple repos at once with `xargs`:
 
 ``` bash
-spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_ruleset_require_pr
+spaid_org_list_repos seedcase-project | xargs -n 1 spaid_gh_ruleset_require_pr
 ```
 
 ### GitHub repository management
 
-#### `spaid_gh_repo_list`
+#### `spaid_org_list_repos`
 
 ``` bash
-spaid_gh_repo_list -h
+spaid_org_list_repos -h
 ```
 
-Usage: spaid_gh_repo_list \[-h\]
+Usage: spaid_org_list_repos \[-h\]
 
 Run this script to get a list of repositories within a specific
 organization. Outputs a repo spec in the format of ‘org/repo’ for each
@@ -442,7 +488,7 @@ repository.
 
 Example:
 
-    spaid_gh_repo_list seedcase-project
+    spaid_org_list_repos seedcase-project
 
 Positional arguments:
 
@@ -478,7 +524,7 @@ Positional arguments:
 Can do multiple repos at once with `xargs`:
 
 ``` bash
-spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_set_repo_settings
+spaid_org_list_repos seedcase-project | xargs -n 1 spaid_gh_set_repo_settings
 ```
 
 #### `spaid_gh_create_repo_from_local`

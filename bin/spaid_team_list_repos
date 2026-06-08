@@ -1,0 +1,47 @@
+#!/bin/zsh
+
+help_text="
+Usage: `basename $0` [-h]
+
+List all repositories for a specific team within a specific organization.
+
+Example:
+
+    $ spaid_team_list_repos seedcase-project platform-tools
+    seedcase-project/seedcase-theme
+    seedcase-project/.github
+    seedcase-project/spaid
+    seedcase-project/zen-do
+    seedcase-project/seedcase-soil
+
+Positional arguments:
+
+1. organization: The GitHub organization name.
+2. team_slug: The GitHub organization team 'slug' name.
+"
+
+if [[ "$1" == "-h" ]] ; then
+  echo $help_text
+  exit 0
+fi
+
+org="$1"
+team="$2"
+
+if [[ -z "$org" ]] ; then
+  echo "Error: organization name is required."
+  echo $help_text
+  exit 1
+fi
+
+if [[ -z "$team" ]] ; then
+  echo "Error: team slug is required."
+  echo $help_text
+  exit 1
+fi
+
+gh api \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2026-03-10" \
+  /orgs/$org/teams/$team/repos \
+  -q ".[] | .full_name"

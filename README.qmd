@@ -90,11 +90,25 @@ spaid_pr_merge_chores -h
 spaid_org_invite -h
 ```
 
-#### `spaid_team_list`
+#### `spaid_org_list_teams`
 
 ```{bash}
 #| output: asis
-spaid_team_list -h
+spaid_org_list_teams -h
+```
+
+#### `spaid_team_list_users`
+
+```{bash}
+#| output: asis
+spaid_team_list_users -h
+```
+
+#### `spaid_team_list_repos`
+
+```{bash}
+#| output: asis
+spaid_team_list_repos -h
 ```
 
 #### `spaid_team_create`
@@ -165,7 +179,7 @@ spaid_gh_ruleset_basic_protect_main -h
 Can do multiple repos at once with `xargs`:
 
 ``` bash
-spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_main
+spaid_org_list_repos seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_main
 ```
 
 #### `spaid_gh_ruleset_basic_protect_tags`
@@ -178,7 +192,7 @@ spaid_gh_ruleset_basic_protect_tags -h
 Can do multiple repos at once with `xargs`:
 
 ``` bash
-spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_tags
+spaid_org_list_repos seedcase-project | xargs -n 1 spaid_gh_ruleset_basic_protect_tags
 ```
 
 #### `spaid_gh_ruleset_require_pr`
@@ -191,16 +205,16 @@ spaid_gh_ruleset_require_pr -h
 Can do multiple repos at once with `xargs`:
 
 ``` bash
-spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_ruleset_require_pr
+spaid_org_list_repos seedcase-project | xargs -n 1 spaid_gh_ruleset_require_pr
 ```
 
 ### GitHub repository management
 
-#### `spaid_gh_repo_list`
+#### `spaid_org_list_repos`
 
 ```{bash}
 #| output: asis
-spaid_gh_repo_list -h
+spaid_org_list_repos -h
 ```
 
 #### `spaid_gh_set_repo_settings`
@@ -213,7 +227,7 @@ spaid_gh_set_repo_settings -h
 Can do multiple repos at once with `xargs`:
 
 ``` bash
-spaid_gh_repo_list seedcase-project | xargs -n 1 spaid_gh_set_repo_settings
+spaid_org_list_repos seedcase-project | xargs -n 1 spaid_gh_set_repo_settings
 ```
 
 #### `spaid_gh_create_repo_from_local`

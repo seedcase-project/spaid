@@ -8,7 +8,7 @@ Outputs a repo spec in the format of 'org/repo' for each repository.
 
 Example:
 
-    spaid_gh_repo_list seedcase-project
+    spaid_org_list_repos seedcase-project
 
 Positional arguments:
 
