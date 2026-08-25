@@ -8,12 +8,13 @@ Add a repository to a team in a GitHub organization. Adds the
 
 Example:
 
-    $ spaid_team_repo_add admin seedcase-project/my-repo
+    $ spaid_team_add_repo seedcase-project admin team
 
 Positional arguments:
 
-1. team_slug: The GitHub organization team 'slug' name.
-2. repository_spec: The GitHub repository specification in the format 'organization/repo'.
+1. organization: The GitHub organization name.
+2. team_slug: The GitHub organization team 'slug' name.
+3. repo: The GitHub repository you want to add to the team.
 "
 
 if [[ "$1" == "-h" ]] ; then
@@ -21,21 +22,24 @@ if [[ "$1" == "-h" ]] ; then
     exit 0
 fi
 
-team_slug="$1"
-repository_spec="$2"
+org="$1"
+team_slug="$2"
+repo="$3"
+
+if [[ "$org" == "" ]] ; then
+  echo "Error: No organization has been given. Please provide one."
+  exit 1
+fi
 
 if [[ "$team_slug" == "" ]] ; then
   echo "Error: No team slug has been given. Please provide one."
   exit 1
 fi
 
-if [[ "$repository_spec" == "" ]] ; then
-  echo "Error: No repository specification has been given. Please provide one."
+if [[ "$repo" == "" ]] ; then
+  echo "Error: No repository name has been given. Please provide one."
   exit 1
 fi
-
-org=$(echo $repository_spec | cut -d'/' -f1)
-repo=$(echo $repository_spec | cut -d'/' -f2)
 
 gh api \
   --method PUT \

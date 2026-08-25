@@ -306,13 +306,13 @@ permission, which allows team members to push to the repository.
 
 Example:
 
-    $ spaid_team_repo_add admin seedcase-project/my-repo
+    $ spaid_team_add_repo seedcase-project admin team
 
 Positional arguments:
 
-1.  team_slug: The GitHub organization team ‘slug’ name.
-2.  repository_spec: The GitHub repository specification in the format
-    ‘organization/repo’.
+1.  organization: The GitHub organization name.
+2.  team_slug: The GitHub organization team ‘slug’ name.
+3.  repo: The GitHub repository you want to add to the team.
 
 #### `spaid_team_remove_repo`
 
