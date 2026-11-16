@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 help_text="
 Usage: `basename $0` [<org>] [<repo>] [-h]
